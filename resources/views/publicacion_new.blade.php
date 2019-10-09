@@ -159,7 +159,75 @@ new TINY.editor.edit('editor',{
 					<strong>Puede subir como máximo 5 imagenes</strong>
 				</div>
 
+                <div class="form-group">
+                    <p> <strong><label class="col-md-2 control-label">Elegir Barrio</label></strong></p>
+                </div>
 
+                <div class="form-group">
+                    <div class="col-md-2">
+                        <label for=""><input type="checkbox" aria-label="Radio button for following text input"> Agronomía </label><br>
+                        <label for=""><input type="checkbox" aria-label="Radio button for following text input" > Almagro</label><br>
+                        <label for=""><input type="checkbox" aria-label="Radio button for following text input"> Balvanera </label><br>
+                        <label for=""><input type="checkbox" aria-label="Radio button for following text input" > Barracas</label><br>
+                        <label for=""><input type="checkbox" aria-label="Radio button for following text input"> Belgrano </label><br>
+                        <label for=""><input type="checkbox" aria-label="Radio button for following text input" > Boedo</label><br>
+                        <label for=""><input type="checkbox" aria-label="Radio button for following text input"> Caballito </label><br>
+                        <label for=""><input type="checkbox" aria-label="Radio button for following text input" > Chacarita</label><br>
+                    </div>
+                    <div class="col-md-2">
+                            <label for=""><input type="checkbox" aria-label="Radio button for following text input"> Coghlan </label><br>
+                            <label for=""><input type="checkbox" aria-label="Radio button for following text input" > Colegiales</label><br>
+                            <label for=""><input type="checkbox" aria-label="Radio button for following text input"> Constitución </label><br>
+                            <label for=""><input type="checkbox" aria-label="Radio button for following text input" > Flores</label><br>
+                            <label for=""><input type="checkbox" aria-label="Radio button for following text input"> Floresta </label><br>
+                            <label for=""><input type="checkbox" aria-label="Radio button for following text input" > La Boca</label><br>
+                            <label for=""><input type="checkbox" aria-label="Radio button for following text input"> La Paternal </label><br>
+                            <label for=""><input type="checkbox" aria-label="Radio button for following text input" > Liniers</label><br>
+                    </div>
+                    <div class="col-md-2">
+                            <label for=""><input type="checkbox" aria-label="Radio button for following text input"> Mataderos </label><br>
+                            <label for=""><input type="checkbox" aria-label="Radio button for following text input" > Monte Castro</label><br>
+                            <label for=""><input type="checkbox" aria-label="Radio button for following text input"> Monserrat </label><br>
+                            <label for=""><input type="checkbox" aria-label="Radio button for following text input" > Nueva Pompeya</label><br>
+                            <label for=""><input type="checkbox" aria-label="Radio button for following text input"> Núñez </label><br>
+                            <label for=""><input type="checkbox" aria-label="Radio button for following text input" > Palermo</label><br>
+                            <label for=""><input type="checkbox" aria-label="Radio button for following text input"> Parque Avellaneda </label><br>
+                            <label for=""><input type="checkbox" aria-label="Radio button for following text input" > Parque Chacabuco</label><br>
+                    </div>
+                    <div class="col-md-2">
+                            <label for=""><input type="checkbox" aria-label="Radio button for following text input"> Parque Chas </label><br>
+                            <label for=""><input type="checkbox" aria-label="Radio button for following text input" > Parque Patricios</label><br>
+                            <label for=""><input type="checkbox" aria-label="Radio button for following text input" > Puerto Madero</label><br>
+                            <label for=""><input type="checkbox" aria-label="Radio button for following text input"> Recoleta </label><br>
+                            <label for=""><input type="checkbox" aria-label="Radio button for following text input" > Retiro</label><br>
+                            <label for=""><input type="checkbox" aria-label="Radio button for following text input"> Saavedra </label><br>
+                            <label for=""><input type="checkbox" aria-label="Radio button for following text input" > San Cristóbal</label><br>
+                            <label for=""><input type="checkbox" aria-label="Radio button for following text input">  San Nicolás </label><br>
+                    </div>
+                    <div class="col-md-2">
+                            <label for=""><input type="checkbox" aria-label="Radio button for following text input"> San Telmo </label><br>
+                            <label for=""><input type="checkbox" aria-label="Radio button for following text input" > Vélez Sársfield </label><br>
+                            <label for=""><input type="checkbox" aria-label="Radio button for following text input"> Versalles </label><br>
+                            <label for=""><input type="checkbox" aria-label="Radio button for following text input" > Villa Crespo </label><br>
+                            <label for=""><input type="checkbox" aria-label="Radio button for following text input"> Villa del Parque </label><br>
+                            <label for=""><input type="checkbox" aria-label="Radio button for following text input" > Villa Devoto </label><br>
+                            <label for=""><input type="checkbox" aria-label="Radio button for following text input"> Villa General Mitre </label><br>
+                            <label for=""><input type="checkbox" aria-label="Radio button for following text input" > Villa Lugano </label><br>
+                    </div>
+                    <div class="col-md-2">
+                            <label for=""><input type="checkbox" aria-label="Radio button for following text input"> Villa Luro </label><br>
+                            <label for=""><input type="checkbox" aria-label="Radio button for following text input" > Villa Ortúzar </label><br>
+                            <label for=""><input type="checkbox" aria-label="Radio button for following text input"> Villa Pueyrredón </label><br>
+                            <label for=""><input type="checkbox" aria-label="Radio button for following text input" > Villa Real </label><br>
+                            <label for=""><input type="checkbox" aria-label="Radio button for following text input"> Villa Riachuelo </label><br>
+                            <label for=""><input type="checkbox" aria-label="Radio button for following text input" > Villa Santa Rita </label><br>
+                            <label for=""><input type="checkbox" aria-label="Radio button for following text input"> Villa Soldati </label><br>
+                            <label for=""><input type="checkbox" aria-label="Radio button for following text input" > Villa Urquiza </label><br>
+                    </div>
+                </div>
+
+
+<!--
 										<div class="form-group">
 											<label class="col-md-3 control-label">Elegir Barrio</label>
 											<div class="col-md-6">
@@ -215,7 +283,8 @@ new TINY.editor.edit('editor',{
 												</select>
 
 
-											</div>
+                                            </div>
+                                        -->
 											<!-- <button id="ms_example7-toggle" class="btn btn-primary">Seleccionar</button> -->
 										</div>
 
