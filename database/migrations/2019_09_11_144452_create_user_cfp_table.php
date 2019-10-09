@@ -15,8 +15,8 @@ class CreateUserCfpTable extends Migration
     {
         Schema::create('user_cfp', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->string('name');
-            $table->string('email');
+            $table->string('name', 200);
+            $table->string('email', 400);
             $table->timestamps();
         });
     }
