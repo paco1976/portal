@@ -33,6 +33,9 @@ class ProfileController extends Controller
 
     public function store($id){
 
+        $zonas = request('zona');
+        dd($zonas);
+
         $data = request()->validate([
             'mobile'=> 'required',
             'user_cfp'=> 'required',
@@ -41,6 +44,7 @@ class ProfileController extends Controller
             'facebook' => '',
             'instagram' => '',
             'linkedin' => '',
+
         ],[
             'mobile.required'=>'El campo celular es obligatorio',
             'user_cfp.required'=> 'CFP es obligatorio',
@@ -73,7 +77,6 @@ class ProfileController extends Controller
 
         return redirect('perfil');
 
-
     }
 
     public function edit($id){
@@ -81,6 +84,12 @@ class ProfileController extends Controller
         $user_profile = User_Profile::where('user_id',$user->id)->first();
         $user_cfp = User_Cfp::where('id',$user->cfp_id)->first();
         $user_cfp_all = User_Cfp::all();
+
+        //no esta en uso
+        $user->profiles = User::find(1)->user_profile;
+        $user->cfp = User::find(1)->user_cfp;
+        //dd($user);
+        //dd($user->cfp->id);
         //$public_path = public_path();
         //dd($user_profile);
         //$url = Storage::url($user_profile->photo);

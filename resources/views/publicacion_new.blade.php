@@ -2,6 +2,29 @@
 
 @section('main')
 
+<script type="text/javascript">
+var lookup = {
+    'Option 1': ['Option 1 - Choice 1', 'Option 1 - Choice 2', 'Option 1 - Choice 3'],
+    'Option 2': ['Option 2 - Choice 1', 'Option 2 - Choice 2'],
+    'Option 3': ['Option 3 - Choice 1'],
+ };
+
+ // When an option is changed, search the above for matching choices
+ $('#options').on('change', function() {
+    // Set selected option as variable
+    var selectValue = $(this).val();
+
+    // Empty the target field
+    $('#choices').empty();
+
+    // For each chocie in the selected option
+    for (i = 0; i < lookup[selectValue].length; i++) {
+       // Output choice in the target field
+       $('#choices').append("<option value='" + lookup[selectValue][i] + "'>" + lookup[selectValue][i] + "</option>");
+    }
+ });
+</script>
+
 			<div role="main" class="main">
 
 
@@ -53,13 +76,57 @@
 									<div id="publicacion" class="tab-pane active">
 
                             <form class="form-horizontal form-bordered" action="#">
+                                    <div class="panel-body">
+                                        <select id="options">
+                                            <option value="" disabled selected>Select an option</option>
+                                            <option value="Option 1">Option 1</option>
+                                            <option value="Option 2">Option 2</option>
+                                            <option value="Option 3">Option 3</option>
+                                        </select>
+                                    </div>
+                                    <div class="panel-body">
+                                        <select id="choices">
+                                            <option value="" disabled selected>Please select an option</option>
+                                        </select>
+                                    </div>
+
 							<div class="panel-body">
 									<form class="form-horizontal form-bordered" action="#">
-										<div class="form-group">
+                                            <div class="form-group">
+                                                <label class="col-md-3 control-label">Profesinoes</label>
+                                                <div class="col-md-6">
+                                                    <!-- multiple="multiple" -->
+                                                    <select class="form-control"  data-plugin-multiselect id="ms_example0">
+                                                        <option value="...">Electricista</option>
+                                                            <option value="...">Gasista</option>
+                                                            <option value="...">Herrero/a</option>
+                                                            <option value="...">Plomero/a</option>
+                                                            <option value="...">Soldador/a</option>
+                                                            <option value="...">Técnico/a aire acondicionado</option>
+                                                            <option value="...">Técnico/a de electrodomesticos</option>
+                                                            <option value="...">Esteticista corporal</option>
+                                                            <option value="...">Esteticista facial</option>
+                                                            <option value="...">Manicura y depilador/a</option>
+                                                            <option value="...">Maquillador/a</option>
+                                                            <option value="...">Peluquero/a</option>
+                                                            <option value="...">Diseñador/a web y gráfico</option>
+                                                            <option value="...">Técnico/a de PC</option>
+                                                            <option value="...">Bicicletero/a</option>
+                                                            <option value="...">Diseño, costura, arreglos y otros</option>
+                                                            <option value="...">Marroquinero/a</option>
+                                                            <option value="...">Realizador/a de video</option>
+                                                            <option value="...">Sonidista</option>
+                                                            <option value="...">Catering, repostería y otros</option>
+                                                    </select>
+                                                </div>
+                                                <!-- <button id="ms_example7-toggle" class="btn btn-primary">Seleccionar</button> -->
+                                            </div>
+
+                                        <div class="form-group">
 											<label class="col-md-3 control-label">Título</label>
 											<div class="col-md-6">
                                                 <!-- multiple="multiple" -->
-												<select class="form-control"  data-plugin-multiselect id="ms_example0">
+												<select class="form-control"  data-plugin-multiselect id="ms_example0" multiple >
 													<option value="...">Electricista</option>
 													 <option value="...">Gasista</option>
 														<option value="...">Herrero/a</option>
@@ -81,14 +148,12 @@
 														<option value="...">Sonidista</option>
 														<option value="...">Catering, repostería y otros</option>
 												</select>
-
-
 											</div>
 											<!-- <button id="ms_example7-toggle" class="btn btn-primary">Seleccionar</button> -->
 										</div>
 
 
-
+                                        <!--
 
 										<div class="form-group">
 											<label class="col-md-3 control-label">CFP</label>
@@ -106,9 +171,9 @@
 
 
 											</div>
-										<!-- <button id="ms_example7-toggle" class="btn btn-primary">Seleccionar</button> -->
-										</div>
 
+										</div>
+                                    -->
 
 
 
@@ -159,12 +224,10 @@ new TINY.editor.edit('editor',{
 					<strong>Puede subir como máximo 5 imagenes</strong>
 				</div>
 
+                <!--
+                <a href="#" class="btn btn-default fileupload-new" data-dismiss="fileupload">Zonas de trabajo </a>
                 <div class="form-group">
-                    <p> <strong><label class="col-md-2 control-label">Elegir Barrio</label></strong></p>
-                </div>
-
-                <div class="form-group">
-                    <div class="col-md-2">
+                    <div class="col-md-3">
                         <label for=""><input type="checkbox" aria-label="Radio button for following text input"> Agronomía </label><br>
                         <label for=""><input type="checkbox" aria-label="Radio button for following text input" > Almagro</label><br>
                         <label for=""><input type="checkbox" aria-label="Radio button for following text input"> Balvanera </label><br>
@@ -173,18 +236,17 @@ new TINY.editor.edit('editor',{
                         <label for=""><input type="checkbox" aria-label="Radio button for following text input" > Boedo</label><br>
                         <label for=""><input type="checkbox" aria-label="Radio button for following text input"> Caballito </label><br>
                         <label for=""><input type="checkbox" aria-label="Radio button for following text input" > Chacarita</label><br>
+                        <label for=""><input type="checkbox" aria-label="Radio button for following text input"> Coghlan </label><br>
+                        <label for=""><input type="checkbox" aria-label="Radio button for following text input" > Colegiales</label><br>
+                        <label for=""><input type="checkbox" aria-label="Radio button for following text input"> Constitución </label><br>
+                        <label for=""><input type="checkbox" aria-label="Radio button for following text input" > Flores</label><br>
                     </div>
-                    <div class="col-md-2">
-                            <label for=""><input type="checkbox" aria-label="Radio button for following text input"> Coghlan </label><br>
-                            <label for=""><input type="checkbox" aria-label="Radio button for following text input" > Colegiales</label><br>
-                            <label for=""><input type="checkbox" aria-label="Radio button for following text input"> Constitución </label><br>
-                            <label for=""><input type="checkbox" aria-label="Radio button for following text input" > Flores</label><br>
+
+                    <div class="col-md-3">
                             <label for=""><input type="checkbox" aria-label="Radio button for following text input"> Floresta </label><br>
                             <label for=""><input type="checkbox" aria-label="Radio button for following text input" > La Boca</label><br>
                             <label for=""><input type="checkbox" aria-label="Radio button for following text input"> La Paternal </label><br>
                             <label for=""><input type="checkbox" aria-label="Radio button for following text input" > Liniers</label><br>
-                    </div>
-                    <div class="col-md-2">
                             <label for=""><input type="checkbox" aria-label="Radio button for following text input"> Mataderos </label><br>
                             <label for=""><input type="checkbox" aria-label="Radio button for following text input" > Monte Castro</label><br>
                             <label for=""><input type="checkbox" aria-label="Radio button for following text input"> Monserrat </label><br>
@@ -194,7 +256,7 @@ new TINY.editor.edit('editor',{
                             <label for=""><input type="checkbox" aria-label="Radio button for following text input"> Parque Avellaneda </label><br>
                             <label for=""><input type="checkbox" aria-label="Radio button for following text input" > Parque Chacabuco</label><br>
                     </div>
-                    <div class="col-md-2">
+                    <div class="col-md-3">
                             <label for=""><input type="checkbox" aria-label="Radio button for following text input"> Parque Chas </label><br>
                             <label for=""><input type="checkbox" aria-label="Radio button for following text input" > Parque Patricios</label><br>
                             <label for=""><input type="checkbox" aria-label="Radio button for following text input" > Puerto Madero</label><br>
@@ -203,18 +265,16 @@ new TINY.editor.edit('editor',{
                             <label for=""><input type="checkbox" aria-label="Radio button for following text input"> Saavedra </label><br>
                             <label for=""><input type="checkbox" aria-label="Radio button for following text input" > San Cristóbal</label><br>
                             <label for=""><input type="checkbox" aria-label="Radio button for following text input">  San Nicolás </label><br>
-                    </div>
-                    <div class="col-md-2">
                             <label for=""><input type="checkbox" aria-label="Radio button for following text input"> San Telmo </label><br>
                             <label for=""><input type="checkbox" aria-label="Radio button for following text input" > Vélez Sársfield </label><br>
                             <label for=""><input type="checkbox" aria-label="Radio button for following text input"> Versalles </label><br>
                             <label for=""><input type="checkbox" aria-label="Radio button for following text input" > Villa Crespo </label><br>
+                    </div>
+                    <div class="col-md-3">
                             <label for=""><input type="checkbox" aria-label="Radio button for following text input"> Villa del Parque </label><br>
                             <label for=""><input type="checkbox" aria-label="Radio button for following text input" > Villa Devoto </label><br>
                             <label for=""><input type="checkbox" aria-label="Radio button for following text input"> Villa General Mitre </label><br>
                             <label for=""><input type="checkbox" aria-label="Radio button for following text input" > Villa Lugano </label><br>
-                    </div>
-                    <div class="col-md-2">
                             <label for=""><input type="checkbox" aria-label="Radio button for following text input"> Villa Luro </label><br>
                             <label for=""><input type="checkbox" aria-label="Radio button for following text input" > Villa Ortúzar </label><br>
                             <label for=""><input type="checkbox" aria-label="Radio button for following text input"> Villa Pueyrredón </label><br>
@@ -224,8 +284,9 @@ new TINY.editor.edit('editor',{
                             <label for=""><input type="checkbox" aria-label="Radio button for following text input"> Villa Soldati </label><br>
                             <label for=""><input type="checkbox" aria-label="Radio button for following text input" > Villa Urquiza </label><br>
                     </div>
-                </div>
 
+                </div>
+                -->
 
 <!--
 										<div class="form-group">

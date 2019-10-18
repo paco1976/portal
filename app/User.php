@@ -37,4 +37,15 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+    public function user_profile(){
+        $profiles = $this->hasMany('App\User_Profile');
+        //dd($profiles);
+        return $profiles;
+    }
+
+    public function user_cfp(){
+        $user_cfp = $this->belongsTo('App\User_Cfp', 'cfp_id');
+        //dd($profiles);
+        return $user_cfp;
+    }
 }
