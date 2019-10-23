@@ -400,6 +400,8 @@ class ComposerStaticInitbd0e434c9d64a932b7bf51549ca49120
     );
 
     public static $classMap = array (
+        'App\\Categoria' => __DIR__ . '/../..' . '/app/Categoria.php',
+        'App\\Categoria_Tipo' => __DIR__ . '/../..' . '/app/Categoria_Tipo.php',
         'App\\Console\\Kernel' => __DIR__ . '/../..' . '/app/Console/Kernel.php',
         'App\\Exceptions\\Handler' => __DIR__ . '/../..' . '/app/Exceptions/Handler.php',
         'App\\Http\\Controllers\\Auth\\ForgotPasswordController' => __DIR__ . '/../..' . '/app/Http/Controllers/Auth/ForgotPasswordController.php',
@@ -428,6 +430,7 @@ class ComposerStaticInitbd0e434c9d64a932b7bf51549ca49120
         'App\\User_Cfp' => __DIR__ . '/../..' . '/app/User_Cfp.php',
         'App\\User_Profile' => __DIR__ . '/../..' . '/app/User_Profile.php',
         'App\\User_type' => __DIR__ . '/../..' . '/app/User_type.php',
+        'App\\Zonas' => __DIR__ . '/../..' . '/app/Zonas.php',
         'BeyondCode\\DumpServer\\DumpServerCommand' => __DIR__ . '/..' . '/beyondcode/laravel-dump-server/src/DumpServerCommand.php',
         'BeyondCode\\DumpServer\\DumpServerServiceProvider' => __DIR__ . '/..' . '/beyondcode/laravel-dump-server/src/DumpServerServiceProvider.php',
         'BeyondCode\\DumpServer\\Dumper' => __DIR__ . '/..' . '/beyondcode/laravel-dump-server/src/Dumper.php',
@@ -465,6 +468,8 @@ class ComposerStaticInitbd0e434c9d64a932b7bf51549ca49120
         'Carbon\\Traits\\Units' => __DIR__ . '/..' . '/nesbot/carbon/src/Carbon/Traits/Units.php',
         'Carbon\\Traits\\Week' => __DIR__ . '/..' . '/nesbot/carbon/src/Carbon/Traits/Week.php',
         'Carbon\\Translator' => __DIR__ . '/..' . '/nesbot/carbon/src/Carbon/Translator.php',
+        'Categoria_Seeder' => __DIR__ . '/../..' . '/database/seeds/Categoria_Seeder.php',
+        'Categoria_TipoSeeder' => __DIR__ . '/../..' . '/database/seeds/Categoria_TipoSeeder.php',
         'Cron\\AbstractField' => __DIR__ . '/..' . '/dragonmantank/cron-expression/src/Cron/AbstractField.php',
         'Cron\\CronExpression' => __DIR__ . '/..' . '/dragonmantank/cron-expression/src/Cron/CronExpression.php',
         'Cron\\DayOfMonthField' => __DIR__ . '/..' . '/dragonmantank/cron-expression/src/Cron/DayOfMonthField.php',

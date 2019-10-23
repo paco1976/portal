@@ -102,7 +102,7 @@
 
 								<li class="dropdown active">
 									<a class="dropdown-toggle" href="">
-										Profesionales
+										Servicios
 										<i class="fa fa-angle-down"></i>
 									</a>
 									<ul class="dropdown-menu">
