@@ -48,4 +48,7 @@ class User extends Authenticatable
         //dd($profiles);
         return $user_cfp;
     }
+    public function zonas() {
+        return $this->belongsToMany('App\Zonas');
+    }
 }
