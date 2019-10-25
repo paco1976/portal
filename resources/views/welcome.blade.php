@@ -92,296 +92,67 @@
 
 						<ul class="portfolio-list sort-destination" data-sort-id="portfolio">
 
-							<li class="col-md-4 col-sm-6 col-xs-12 isotope-item websites">
+                            @foreach($categoria_servicios_all as $categoria)
+                            <li class="col-md-4 col-sm-6 col-xs-12 isotope-item websites">
 								<div class="portfolio-item img-thumbnail">
-									<a href="grupal.html" class="thumb-info">
-										<img alt="" class="img-responsive" src="img/projects/carpintero.jpg">
+									<a href="#" class="thumb-info">
+										<img alt="" class="img-responsive" src="{{ asset($categoria->icon) }}">
 										<span class="thumb-info-title">
-											<span class="thumb-info-inner">Carpintero/a</span>
+											<span class="thumb-info-inner">{{ $categoria->name }}</span>
 
 										</span>
 										<span class="thumb-info-action">
-											<span title="Universal" class="thumb-info-action-icon"><i class="fa fa-link"></i></span>
+											<span title={{ asset($categoria->name) }} class="thumb-info-action-icon"><i class="fa fa-link"></i></span>
 										</span>
 									</a>
 								</div>
 							</li>
-							<li class="col-md-4 col-sm-6 col-xs-12 isotope-item brands">
-								<div class="portfolio-item img-thumbnail">
-									<a href="grupal.html" class="thumb-info">
-										<img alt="" class="img-responsive" src="img/projects/electricista.jpg">
-										<span class="thumb-info-title">
-											<span class="thumb-info-inner">Electricista</span>
-
-										</span>
-										<span class="thumb-info-action">
-											<span title="Universal" class="thumb-info-action-icon"><i class="fa fa-link"></i></span>
-										</span>
-									</a>
-								</div>
-							</li>
-							<li class="col-md-4 col-sm-6 col-xs-12 isotope-item logos">
-								<div class="portfolio-item img-thumbnail">
-									<a href="grupal.html" class="thumb-info">
-										<img alt="" class="img-responsive" src="img/projects/gasista.jpg">
-										<span class="thumb-info-title">
-											<span class="thumb-info-inner">Gasista</span>
-
-										</span>
-										<span class="thumb-info-action">
-											<span title="Universal" class="thumb-info-action-icon"><i class="fa fa-link"></i></span>
-										</span>
-									</a>
-								</div>
-							</li>
-							<li class="col-md-4 col-sm-6 col-xs-12 isotope-item websites">
-								<div class="portfolio-item img-thumbnail">
-									<a href="grupal.html" class="thumb-info">
-										<img alt="" class="img-responsive" src="img/projects/herrero.jpg">
-										<span class="thumb-info-title">
-											<span class="thumb-info-inner">Herrero/a</span>
-
-										</span>
-										<span class="thumb-info-action">
-											<span title="Universal" class="thumb-info-action-icon"><i class="fa fa-link"></i></span>
-										</span>
-									</a>
-								</div>
-							</li>
-							<li class="col-md-4 col-sm-6 col-xs-12 isotope-item websites">
-								<div class="portfolio-item img-thumbnail">
-									<a href="grupal.html" class="thumb-info">
-										<img alt="" class="img-responsive" src="img/projects/plomero.jpg">
-										<span class="thumb-info-title">
-											<span class="thumb-info-inner">Plomero/a</span>
-
-										</span>
-										<span class="thumb-info-action">
-											<span title="Universal" class="thumb-info-action-icon"><i class="fa fa-link"></i></span>
-										</span>
-									</a>
-								</div>
-							</li>
-							<li class="col-md-4 col-sm-6 col-xs-12 isotope-item brands">
-								<div class="portfolio-item img-thumbnail">
-									<a href="grupal.html" class="thumb-info">
-										<img alt="" class="img-responsive" src="img/projects/soldador.jpg">
-										<span class="thumb-info-title">
-											<span class="thumb-info-inner">Soldador/a</span>
-
-										</span>
-										<span class="thumb-info-action">
-											<span title="Universal" class="thumb-info-action-icon"><i class="fa fa-link"></i></span>
-										</span>
-									</a>
-								</div>
-							</li>
-							<li class="col-md-4 col-sm-6 col-xs-12 isotope-item logos">
-								<div class="portfolio-item img-thumbnail">
-									<a href="grupal.html" class="thumb-info">
-										<img alt="" class="img-responsive" src="img/projects/acondicionado.jpg">
-										<span class="thumb-info-title">
-											<span class="thumb-info-inner">Técnico/a aire acondicionado</span>
-
-										</span>
-										<span class="thumb-info-action">
-											<span title="Universal" class="thumb-info-action-icon"><i class="fa fa-link"></i></span>
-										</span>
-									</a>
-								</div>
-							</li>
-							<li class="col-md-4 col-sm-6 col-xs-12 isotope-item websites">
-								<div class="portfolio-item img-thumbnail">
-									<a href="grupal.html" class="thumb-info">
-										<img alt="" class="img-responsive" src="img/projects/electrodomesticos.jpg">
-										<span class="thumb-info-title">
-											<span class="thumb-info-inner">Técnico/a de electrodomesticos</span>
-
-										</span>
-										<span class="thumb-info-action">
-											<span title="Universal" class="thumb-info-action-icon"><i class="fa fa-link"></i></span>
-										</span>
-									</a>
-								</div>
-							</li>
-							<li class="col-md-4 col-sm-6 col-xs-12 isotope-item websites">
-								<div class="portfolio-item img-thumbnail">
-									<a href="grupal.html" class="thumb-info">
-										<img alt="" class="img-responsive" src="img/projects/estetica.jpg">
-										<span class="thumb-info-title">
-											<span class="thumb-info-inner">Esteticista corporal</span>
-
-										</span>
-										<span class="thumb-info-action">
-											<span title="Universal" class="thumb-info-action-icon"><i class="fa fa-link"></i></span>
-										</span>
-									</a>
-								</div>
-							</li>
-
-
-
-
-							<li class="col-md-4 col-sm-6 col-xs-12 isotope-item websites">
-								<div class="portfolio-item img-thumbnail">
-									<a href="grupal.html" class="thumb-info">
-										<img alt="" class="img-responsive" src="img/projects/manicura.jpg">
-										<span class="thumb-info-title">
-											<span class="thumb-info-inner">Manicura y depilador/a</span>
-
-										</span>
-										<span class="thumb-info-action">
-											<span title="Universal" class="thumb-info-action-icon"><i class="fa fa-link"></i></span>
-										</span>
-									</a>
-								</div>
-							</li>
-							<li class="col-md-4 col-sm-6 col-xs-12 isotope-item websites">
-								<div class="portfolio-item img-thumbnail">
-									<a href="grupal.html" class="thumb-info">
-										<img alt="" class="img-responsive" src="img/projects/maquilladora.jpg">
-										<span class="thumb-info-title">
-											<span class="thumb-info-inner">Maquillador/a</span>
-
-										</span>
-										<span class="thumb-info-action">
-											<span title="Universal" class="thumb-info-action-icon"><i class="fa fa-link"></i></span>
-										</span>
-									</a>
-								</div>
-							</li>
-							<li class="col-md-4 col-sm-6 col-xs-12 isotope-item websites">
-								<div class="portfolio-item img-thumbnail">
-									<a href="grupal.html" class="thumb-info">
-										<img alt="" class="img-responsive" src="img/projects/peluquera.jpg">
-										<span class="thumb-info-title">
-											<span class="thumb-info-inner">Peluquero/a</span>
-
-										</span>
-										<span class="thumb-info-action">
-											<span title="Universal" class="thumb-info-action-icon"><i class="fa fa-link"></i></span>
-										</span>
-									</a>
-								</div>
-							</li>
-							<li class="col-md-4 col-sm-6 col-xs-12 isotope-item websites">
-								<div class="portfolio-item img-thumbnail">
-									<a href="grupal.html" class="thumb-info">
-										<img alt="" class="img-responsive" src="img/projects/grafico.jpg">
-										<span class="thumb-info-title">
-											<span class="thumb-info-inner">Diseñador/a web y gráfico</span>
-
-										</span>
-										<span class="thumb-info-action">
-											<span title="Universal" class="thumb-info-action-icon"><i class="fa fa-link"></i></span>
-										</span>
-									</a>
-								</div>
-							</li>
-							<li class="col-md-4 col-sm-6 col-xs-12 isotope-item websites">
-								<div class="portfolio-item img-thumbnail">
-									<a href="grupal.html" class="thumb-info">
-										<img alt="" class="img-responsive" src="img/projects/pc.jpg">
-										<span class="thumb-info-title">
-											<span class="thumb-info-inner">Técnico/a de PC</span>
-
-										</span>
-										<span class="thumb-info-action">
-											<span title="Universal" class="thumb-info-action-icon"><i class="fa fa-link"></i></span>
-										</span>
-									</a>
-								</div>
-							</li>
-							<li class="col-md-4 col-sm-6 col-xs-12 isotope-item websites">
-								<div class="portfolio-item img-thumbnail">
-									<a href="grupal.html" class="thumb-info">
-										<img alt="" class="img-responsive" src="img/projects/bicicleta.jpg">
-										<span class="thumb-info-title">
-											<span class="thumb-info-inner">Bicicletero/a</span>
-
-										</span>
-										<span class="thumb-info-action">
-											<span title="Universal" class="thumb-info-action-icon"><i class="fa fa-link"></i></span>
-										</span>
-									</a>
-								</div>
-							</li>
-							<li class="col-md-4 col-sm-6 col-xs-12 isotope-item websites">
-								<div class="portfolio-item img-thumbnail">
-									<a href="grupal.html" class="thumb-info">
-										<img alt="" class="img-responsive" src="img/projects/costura.jpg">
-										<span class="thumb-info-title">
-											<span class="thumb-info-inner">Diseño, costura, arreglos y otros</span>
-
-										</span>
-										<span class="thumb-info-action">
-											<span title="Universal" class="thumb-info-action-icon"><i class="fa fa-link"></i></span>
-										</span>
-									</a>
-								</div>
-							</li>
-							<li class="col-md-4 col-sm-6 col-xs-12 isotope-item websites">
-								<div class="portfolio-item img-thumbnail">
-									<a href="grupal.html" class="thumb-info">
-										<img alt="" class="img-responsive" src="img/projects/marroquinero.jpg">
-										<span class="thumb-info-title">
-											<span class="thumb-info-inner">Marroquinero/a</span>
-
-										</span>
-										<span class="thumb-info-action">
-											<span title="Universal" class="thumb-info-action-icon"><i class="fa fa-link"></i></span>
-										</span>
-									</a>
-								</div>
-							</li>
-							<li class="col-md-4 col-sm-6 col-xs-12 isotope-item websites">
-								<div class="portfolio-item img-thumbnail">
-									<a href="grupal.html" class="thumb-info">
-										<img alt="" class="img-responsive" src="img/projects/video.jpg">
-										<span class="thumb-info-title">
-											<span class="thumb-info-inner">Realizador/a de video</span>
-
-										</span>
-										<span class="thumb-info-action">
-											<span title="Universal" class="thumb-info-action-icon"><i class="fa fa-link"></i></span>
-										</span>
-									</a>
-								</div>
-							</li>
-
-							<li class="col-md-4 col-sm-6 col-xs-12 isotope-item websites">
-								<div class="portfolio-item img-thumbnail">
-									<a href="grupal.html" class="thumb-info">
-										<img alt="" class="img-responsive" src="img/projects/sonidista.jpg">
-										<span class="thumb-info-title">
-											<span class="thumb-info-inner">Sonidista</span>
-
-										</span>
-										<span class="thumb-info-action">
-											<span title="Universal" class="thumb-info-action-icon"><i class="fa fa-link"></i></span>
-										</span>
-									</a>
-								</div>
-							</li>
-
-							<li class="col-md-4 col-sm-6 col-xs-12 isotope-item websites">
-								<div class="portfolio-item img-thumbnail">
-									<a href="grupal.html" class="thumb-info">
-										<img alt="" class="img-responsive" src="img/projects/repostera.jpg">
-										<span class="thumb-info-title">
-											<span class="thumb-info-inner">Catering, repostería y otros</span>
-
-										</span>
-										<span class="thumb-info-action">
-											<span title="Universal" class="thumb-info-action-icon"><i class="fa fa-link"></i></span>
-										</span>
-									</a>
-								</div>
-							</li>
+                            @endforeach
 
 						</ul>
 
 					</div>
+
+				</div>
+
+                <section class="page-top">
+					<div class="container">
+						<div class="row">
+
+						</div>
+						<div class="row">
+							<div class="col-md-12">
+								<h1>¿ESTAS ESTAS NECESITANDO RENOVAR TU CASA?</h1>
+							</div>
+						</div>
+					</div>
+				</section>
+
+				<div class="container">
+
+                    <div class="row">
+
+                            <ul class="portfolio-list sort-destination" data-sort-id="portfolio">
+
+                                @foreach($categoria_productos_all as $categoria)
+                                <li class="col-md-4 col-sm-6 col-xs-12 isotope-item websites">
+                                    <div class="portfolio-item img-thumbnail">
+                                        <a href="#" class="thumb-info">
+                                            <img alt="" class="img-responsive" src="{{ asset($categoria->icon) }}">
+                                            <span class="thumb-info-title">
+                                                <span class="thumb-info-inner">{{ $categoria->name }}</span>
+
+                                            </span>
+                                            <span class="thumb-info-action">
+                                                <span title={{ asset($categoria->name) }} class="thumb-info-action-icon"><i class="fa fa-link"></i></span>
+                                            </span>
+                                        </a>
+                                    </div>
+                                </li>
+                                @endforeach
+
+                            </ul>
+                    </div>
 
 				</div>
 

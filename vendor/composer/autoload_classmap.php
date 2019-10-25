@@ -74,6 +74,7 @@ return array(
     'Carbon\\Traits\\Units' => $vendorDir . '/nesbot/carbon/src/Carbon/Traits/Units.php',
     'Carbon\\Traits\\Week' => $vendorDir . '/nesbot/carbon/src/Carbon/Traits/Week.php',
     'Carbon\\Translator' => $vendorDir . '/nesbot/carbon/src/Carbon/Translator.php',
+    'Categoria_ProductosSeeder' => $baseDir . '/database/seeds/Categoria_ProductosSeeder.php',
     'Categoria_Seeder' => $baseDir . '/database/seeds/Categoria_Seeder.php',
     'Categoria_TipoSeeder' => $baseDir . '/database/seeds/Categoria_TipoSeeder.php',
     'Cron\\AbstractField' => $vendorDir . '/dragonmantank/cron-expression/src/Cron/AbstractField.php',

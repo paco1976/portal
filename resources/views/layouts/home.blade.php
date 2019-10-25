@@ -106,32 +106,26 @@
 										<i class="fa fa-angle-down"></i>
 									</a>
 									<ul class="dropdown-menu">
-<li><a href="grupal.html">Carpintero/a</a></li>
- <li><a href="grupal.html">Electricista</a></li>
- <li><a href="grupal.html">Gasista</a></li>
- <li><a href="grupal.html">Herrero/a</a></li>
- <li><a href="grupal.html">Plomero/a</a></li>
- <li><a href="grupal.html">Soldador/a</a></li>
- <li><a href="grupal.html">Técnico/a aire acondicionado</a></li>
- <li><a href="grupal.html">Técnico/a de electrodomesticos</a></li>
- <li><a href="grupal.html">Esteticista corporal</a></li>
- <li><a href="grupal.html">Esteticista facial</a></li>
- <li><a href="grupal.html">Manicura y depilador/a</a></li>
- <li><a href="grupal.html">Maquillador/a</a></li>
- <li><a href="grupal.html">Peluquero/a</a></li>
- <li><a href="grupal.html">Diseñador/a web y gráfico</a></li>
- <li><a href="grupal.html">Técnico/a de PC</a></li>
- <li><a href="grupal.html">Bicicletero/a</a></li>
- <li><a href="grupal.html">Diseño, costura, arreglos y otros</a></li>
- <li><a href="grupal.html">Marroquinero/a</a></li>
- <li><a href="grupal.html">Realizador/a de video</a></li>
- <li><a href="grupal.html">Sonidista</a></li>
- <li><a href="grupal.html">Catering, repostería y otros</a></li>
-
-
+                                    @foreach($categoria_servicios_all as $categoria)
+                                        <li><a href="#">{{ $categoria->name }}</a></li>
+                                    @endforeach
 
 									</ul>
-								</li>
+                                </li>
+
+                                <li class="dropdown active">
+                                    <a class="dropdown-toggle" href="">
+                                        Productos
+                                        <i class="fa fa-angle-down"></i>
+                                    </a>
+                                    <ul class="dropdown-menu">
+                                    @foreach($categoria_productos_all as $categoria)
+                                        <li><a href="#">{{ $categoria->name }}</a></li>
+                                    @endforeach
+
+                                    </ul>
+                                </li>
+
 								<li>
 									<a href="{{ url('/comunidad') }}">comunidad CFP</a>
 								</li>

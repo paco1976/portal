@@ -4,6 +4,8 @@ use App\User_type;
 use App\User_Cfp;
 use App\User_Profile;
 use App\User;
+use App\Categoria;
+use App\Categoria_Tipo;
 use Illuminate\Support\Facades\Storage;
 
 /*
@@ -17,7 +19,12 @@ use Illuminate\Support\Facades\Storage;
 |
 */
 
-Route::get('/', function () { return view('welcome');});
+Route::get('/', function () {
+    $categoria_servicios_all = Categoria::where(['categoria_tipo_id' => 1,'active' => 1])->get();
+    $categoria_productos_all = Categoria::where(['categoria_tipo_id' => 2,'active' => 1])->get();
+    //dd($categoria_productos_all);
+    return view('welcome', compact('categoria_servicios_all', 'categoria_productos_all'));
+});
 
 
 Auth::routes();
