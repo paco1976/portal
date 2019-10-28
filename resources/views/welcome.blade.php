@@ -88,8 +88,6 @@
 
 
 
-					<div class="row">
-
 						<ul class="portfolio-list sort-destination" data-sort-id="portfolio">
 
                             @foreach($categoria_servicios_all as $categoria)
@@ -129,6 +127,10 @@
 				</section>
 
 				<div class="container">
+                    <div class="row">
+                        <!--<p>En esta sección  encontrarás  productos realizados por profesionales que forman parte de la comunidad Cefeperes y también por estudiantes de los talleres de los Centros de Formación,  en el marco de la producción solidaria de insumos. Los recursos  provenientes de esas ventas serán reinvertidos por la cooperadora en  nuevos insumos, para proveer a los cursos</p> -->
+                        <h2>En esta sección  encontrarás  productos realizados por profesionales que forman parte de la comunidad Cefeperes y también por estudiantes de los talleres de los Centros de Formación,  en el marco de la producción solidaria de insumos. Los recursos  provenientes de esas ventas serán reinvertidos por la cooperadora en  nuevos insumos, para proveer a los cursos</h2>
+                    </div>
 
                     <div class="row">
 
