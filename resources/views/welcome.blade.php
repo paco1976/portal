@@ -64,8 +64,6 @@
 									 data-speed="500"
 									 data-start="2000"
 									 data-easing="easeOutExpo"><strong>CON CERTIFICACIÓN OFICIAL EN TU BARRIO</strong> </div>
-
-
 							</li>
 						</ul>
 					</div>

@@ -7,8 +7,8 @@
 
 		<!-- Basic -->
         <meta charset="utf-8">
-        <title>{{ config('app.name', 'Portal') }}</title>
-		<!-- <title>CEFEPERES - Servicios Profesionales de egresados de CFP</title> -->
+        <!-- <title>{{ config('app.name', 'Portal') }}</title> -->
+		<title>CEFEPERES - Servicios Profesionales de egresados de CFP</title>
 		<meta name="keywords" content="CEFEPERES, Servicios Profesionales, Carpintero, Electricista, Aire Acondicionado, Maquillaje, Estética, Herrero, Peluquería, Video, Sonido, Diseño, Marroquinería, Plomero, Tècnico" />
 		<meta name="description" content="CEFEPERES - CONTACTÁ PROFESIONALES CON CERTIFICACIÓN OFICIAL EN TU BARRIO. Responsabilidad, confianza y precios justos">
 		<meta name="author" content="TecnoARTE">

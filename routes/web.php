@@ -108,7 +108,21 @@ Route::get('/foro',function(){ return view('foro'); } )->Name('foro');
 Route::get('/interacciones',function(){ return view('interacciones'); } )->name('interacciones');
 Route::get('/chat',function(){ return view('chat'); } )->name('chat');
 /* Rutas publicas */
-Route::get('/contacto',function(){return view('contacto');})->name('contacto');
-Route::get('/condiciones',function(){ return view('condiciones'); });
-Route::get('/comunidad',function(){return view('comunidad');});
+Route::get('/contacto',function(){
+    $categoria_servicios_all = Categoria::where(['categoria_tipo_id' => 1,'active' => 1])->get();
+    $categoria_productos_all = Categoria::where(['categoria_tipo_id' => 2,'active' => 1])->get();
+    return view('contacto', compact('categoria_servicios_all', 'categoria_productos_all'));
+})->name('contacto');
+
+
+Route::get('/condiciones',function(){
+    $categoria_servicios_all = Categoria::where(['categoria_tipo_id' => 1,'active' => 1])->get();
+    $categoria_productos_all = Categoria::where(['categoria_tipo_id' => 2,'active' => 1])->get();
+    return view('condiciones', compact('categoria_servicios_all', 'categoria_productos_all'));
+});
+Route::get('/comunidad',function(){
+    $categoria_servicios_all = Categoria::where(['categoria_tipo_id' => 1,'active' => 1])->get();
+    $categoria_productos_all = Categoria::where(['categoria_tipo_id' => 2,'active' => 1])->get();
+    return view('comunidad', compact('categoria_servicios_all', 'categoria_productos_all'));
+});
 
