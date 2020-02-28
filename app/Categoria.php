@@ -16,4 +16,14 @@ class Categoria extends Model
     protected $fillable = [
         'name', 'icon', 'categoria_tipo_id','active',
     ];
+    
+    public function publicaciones(){
+        $publicaciones = $this->hasMany('App\Publicacion');
+        //dd($profiles);
+        dd($publicaciones);
+        return $publicaciones;
+    }
+    public function categorias(){
+        return $this->belongsToMany('App\Categoria');
+    }
 }

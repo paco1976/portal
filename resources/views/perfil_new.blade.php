@@ -158,70 +158,31 @@
                                     <option value="cosa3">cosa3</option>
                                 </select>
                                 -->
+
                                 <a href="#" class="btn btn-default fileupload-new" data-dismiss="fileupload">Zonas de trabajo </a>
 
+
+                                <ul class="portfolio-list sort-destination" data-sort-id="portfolio">
+                                @if($zonas_all)
+                                    @foreach($zonas_all as $zona)
+                                    <li class="col-md-4 col-sm-6 col-xs-12 isotope-item websites">
+                                        <label for="">
+                                        <input type="checkbox" name="zonas[]" value="{{ $zona->name }}" multiple ria-label="Radio button for following text input"> {{ $zona->name }}
+                                        </label><br>
+                                    </li>
+                                    @endforeach
+                                @else  
+                                    <p>Ups! Algo ocurrio con las zonas</p>
+                                @endif
+                                
+                                <!--
                                 <div class="form-group">
-
-                                        <div class="col-md-4">
-                                            <label for=""><input type="checkbox" name="zona[0]" value="Agronomia" multiple ria-label="Radio button for following text input"> Agronomía </label><br>
-                                            <label for=""><input type="checkbox" name="zona[1]" value="Almagro" multiple aria-label="Radio button for following text input" > Almagro</label><br>
-                                            <label for=""><input type="checkbox" aria-label="Radio button for following text input"> Balvanera </label><br>
-                                            <label for=""><input type="checkbox" aria-label="Radio button for following text input" > Barracas</label><br>
-                                            <label for=""><input type="checkbox" aria-label="Radio button for following text input"> Belgrano </label><br>
-                                            <label for=""><input type="checkbox" aria-label="Radio button for following text input" > Boedo</label><br>
-                                            <label for=""><input type="checkbox" aria-label="Radio button for following text input"> Caballito </label><br>
-                                            <label for=""><input type="checkbox" aria-label="Radio button for following text input" > Chacarita</label><br>
-                                            <label for=""><input type="checkbox" aria-label="Radio button for following text input"> Coghlan </label><br>
-                                            <label for=""><input type="checkbox" aria-label="Radio button for following text input" > Colegiales</label><br>
-                                            <label for=""><input type="checkbox" aria-label="Radio button for following text input"> Constitución </label><br>
-                                            <label for=""><input type="checkbox" aria-label="Radio button for following text input" > Flores</label><br>
-                                            <label for=""><input type="checkbox" aria-label="Radio button for following text input"> Floresta </label><br>
-                                            <label for=""><input type="checkbox" aria-label="Radio button for following text input" > La Boca</label><br>
-                                            <label for=""><input type="checkbox" aria-label="Radio button for following text input"> La Paternal </label><br>
-                                            <label for=""><input type="checkbox" aria-label="Radio button for following text input" > Liniers</label><br>
-                                        </div>
-
-                                        <div class="col-md-4">
-                                            <label for=""><input type="checkbox" aria-label="Radio button for following text input"> Mataderos </label><br>
-                                            <label for=""><input type="checkbox" aria-label="Radio button for following text input" > Monte Castro</label><br>
-                                            <label for=""><input type="checkbox" aria-label="Radio button for following text input"> Monserrat </label><br>
-                                            <label for=""><input type="checkbox" aria-label="Radio button for following text input" > Nueva Pompeya</label><br>
-                                            <label for=""><input type="checkbox" aria-label="Radio button for following text input"> Núñez </label><br>
-                                            <label for=""><input type="checkbox" aria-label="Radio button for following text input" > Palermo</label><br>
-                                            <label for=""><input type="checkbox" aria-label="Radio button for following text input"> Parque Avellaneda </label><br>
-                                            <label for=""><input type="checkbox" aria-label="Radio button for following text input" > Parque Chacabuco</label><br>
-                                            <label for=""><input type="checkbox" aria-label="Radio button for following text input"> Parque Chas </label><br>
-                                            <label for=""><input type="checkbox" aria-label="Radio button for following text input" > Parque Patricios</label><br>
-                                            <label for=""><input type="checkbox" aria-label="Radio button for following text input" > Puerto Madero</label><br>
-                                            <label for=""><input type="checkbox" aria-label="Radio button for following text input"> Recoleta </label><br>
-                                            <label for=""><input type="checkbox" aria-label="Radio button for following text input" > Retiro</label><br>
-                                            <label for=""><input type="checkbox" aria-label="Radio button for following text input"> Saavedra </label><br>
-                                            <label for=""><input type="checkbox" aria-label="Radio button for following text input" > San Cristóbal</label><br>
-                                            <label for=""><input type="checkbox" aria-label="Radio button for following text input">  San Nicolás </label><br>
-                                        </div>
-                                        <div class="col-md-4">
-
-                                            <label for=""><input type="checkbox" aria-label="Radio button for following text input"> San Telmo </label><br>
-                                            <label for=""><input type="checkbox" aria-label="Radio button for following text input" > Vélez Sársfield </label><br>
-                                            <label for=""><input type="checkbox" aria-label="Radio button for following text input"> Versalles </label><br>
-                                            <label for=""><input type="checkbox" aria-label="Radio button for following text input" > Villa Crespo </label><br>
-                                            <label for=""><input type="checkbox" aria-label="Radio button for following text input"> Villa del Parque </label><br>
-                                            <label for=""><input type="checkbox" aria-label="Radio button for following text input" > Villa Devoto </label><br>
-                                            <label for=""><input type="checkbox" aria-label="Radio button for following text input"> Villa General Mitre </label><br>
-                                            <label for=""><input type="checkbox" aria-label="Radio button for following text input" > Villa Lugano </label><br>
-                                            <label for=""><input type="checkbox" aria-label="Radio button for following text input"> Villa Luro </label><br>
-                                            <label for=""><input type="checkbox" aria-label="Radio button for following text input" > Villa Ortúzar </label><br>
-                                            <label for=""><input type="checkbox" aria-label="Radio button for following text input"> Villa Pueyrredón </label><br>
-                                            <label for=""><input type="checkbox" aria-label="Radio button for following text input" > Villa Real </label><br>
-                                            <label for=""><input type="checkbox" aria-label="Radio button for following text input"> Villa Riachuelo </label><br>
-                                            <label for=""><input type="checkbox" aria-label="Radio button for following text input" > Villa Santa Rita </label><br>
-                                            <label for=""><input type="checkbox" aria-label="Radio button for following text input"> Villa Soldati </label><br>
-                                            <label for=""><input type="checkbox" aria-label="Radio button for following text input" > Villa Urquiza </label><br>
-                                        </div>
-
-
+                                    <div class="col-md-4">
+                                        <label for=""><input type="checkbox" name="{{ $zona->name }}" value="Agronomia" multiple ria-label="Radio button for following text input"> {{ $zona->name }}</label><br>
                                     </div>
-
+                                </div>
+                                -->
+                                
                                 <button type="submit">Guardar</button>
                                 <!-- <a href="#" class="btn btn-primary" data-dismiss="fileupload">Guardar</a> -->
 

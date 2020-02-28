@@ -98,7 +98,7 @@
 
 										</span>
 										<span class="thumb-info-action">
-											<span title={{ asset($categoria->name) }} class="thumb-info-action-icon"><i class="fa fa-link"></i></span>
+											<span title='{{ asset($categoria->name) }}' class="thumb-info-action-icon"><i class="fa fa-link"></i></span>
 										</span>
 									</a>
 								</div>

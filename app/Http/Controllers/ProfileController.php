@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\User_Cfp;
 use App\User_Profile;
 use App\User;
+use App\Zonas;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Http\File;
@@ -24,18 +25,17 @@ class ProfileController extends Controller
         //$user_profile = User_Profile::find($user->_id);
         $user_cfp_all = User_Cfp::all();
         $user_profile ="";
+        $zonas_all = Zonas::all();
         //$user_profile = User_Profile::find($id);
-        //dd($user_profile);
+        //dd($zonas_all);
 
-        return view('perfil_new', compact('user', 'user_cfp','user_cfp_all', 'user_profile'));
+        return view('perfil_new', compact('user', 'user_cfp','user_cfp_all', 'user_profile', 'zonas_all'));
 
     }
 
     public function store($id){
 
-        $zonas = request('zona');
-        dd($zonas);
-
+        
         $data = request()->validate([
             'mobile'=> 'required',
             'user_cfp'=> 'required',
@@ -44,12 +44,25 @@ class ProfileController extends Controller
             'facebook' => '',
             'instagram' => '',
             'linkedin' => '',
+            'zonas[]'=>'',
 
         ],[
             'mobile.required'=>'El campo celular es obligatorio',
             'user_cfp.required'=> 'CFP es obligatorio',
         ]);
+        
+        //anda el for
+        /*
+        foreach(request('zonas') as $zona) {
+            dd($zona);
+        }
+        */
+        
+        //$zonas = request('zonas');
+        //dd($zonas);
 
+        //$zonas = request('zona[]');
+        //dd($zonas);
 
         //obtenemos el campo file definido en el formulario
        // $file = request()->file('photo');
@@ -63,6 +76,11 @@ class ProfileController extends Controller
 
         $user = User::find($id);
         $user->save(['user_cfp']);
+
+        foreach(request('zonas') as $zona) {
+            $user->zonas()->attach(Zonas::where('name', $zona)->first());
+        }
+
         User_Profile::create([
             'user_id' => $id,
             'mobile' => $data['mobile'],
@@ -72,6 +90,9 @@ class ProfileController extends Controller
             'instagram' => $data['instagram'],
             'linkedin' => $data['linkedin'],
         ]);
+        
+        
+        
 
         Session::flash('message', 'El perfil se actualizado con éxito');
 

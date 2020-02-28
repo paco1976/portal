@@ -56,66 +56,47 @@
 							<div class="row">
 								<div class="col-sm-6">
 									<div class="mb-md">
-										<a href="/publicacion_new">
+										<a href="{{ Url('/publicacion_new') }}">
 										    <button id="addToTable" class="btn btn-primary">Agregar Publicación </button>
                                         </a>
                                     </div>
 								</div>
 							</div>
-										<div class="table-responsive">
-							<table class="table table-bordered table-striped mb-none" id="datatable-editable">
-								<thead>
+							<div class="table-responsive">
+							<br>
+							
+							<!--Acá va el ir para chequear las publicaciones -->
+							@if($publicacion_all)
+								<p>Por el momento no tienes publicaciones</p>
+							@else
+								<table class="table table-bordered table-striped mb-none" id="datatable-editable">
+									<thead>
 
-									<tr>
-										<th>Título</th>
-										<th>Categoría</th>
-										<th>Visitas</th>
-										<th>Visible</th>
-										<th>Editar/Eliminar</th>
-									</tr>
-								</thead>
-								<tbody>
-									<tr class="gradeX">
-										<td>Título</td>
-										<td>Categoría</td>
-										<td>Visitas</td>
-										<td>Visible</td>
-										<td class="actions">
-
-											<a href="#" class="on-default edit-row"><i class="fa fa-pencil"></i></a>
-											<a href="#" class="on-default remove-row"><i class="fa fa-trash-o"></i></a>
-										</td>
-									</tr>
-									<tr class="gradeX">
-										<td>Título</td>
-										<td>Categoría</td>
-										<td>Visitas</td>
-										<td>Visible</td>
-										<td class="actions">
-
-											<a href="#" class="on-default edit-row"><i class="fa fa-pencil"></i></a>
-											<a href="#" class="on-default remove-row"><i class="fa fa-trash-o"></i></a>
-										</td>
-									</tr>
-									<tr class="gradeX">
-										<td>Título</td>
-										<td>Categoría</td>
-										<td>Visitas</td>
-										<td>Visible</td>
-										<td class="actions">
-
-											<a href="#" class="on-default edit-row"><i class="fa fa-pencil"></i></a>
-											<a href="#" class="on-default remove-row"><i class="fa fa-trash-o"></i></a>
-										</td>
-									</tr>
-								</tbody>
-							</table>
+										<tr>
+											<th>Título</th>
+											<th>Categoría</th>
+											<th>Visitas</th>
+											<th>Visible</th>
+											<th>Editar/Eliminar</th>
+										</tr>
+									</thead>
+									<tbody>
+										<tr class="gradeX">
+											<td>Título</td>
+											<td>Categoría</td>
+											<td>Visitas</td>
+											<td>Visible</td>
+											<td class="actions">
+												<a href="#" class="on-default edit-row"><i class="fa fa-pencil"></i></a>
+												<a href="#" class="on-default remove-row"><i class="fa fa-trash-o"></i></a>
+											</td>
+										</tr>
+									</tbody>
+								</table>
+							@endif
+							
 						</div>
 						</div>
-
-
-
-
 
 
 								</div>

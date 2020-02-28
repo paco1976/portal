@@ -75,57 +75,25 @@ var lookup = {
 
 									<div id="publicacion" class="tab-pane active">
 
-                            <form class="form-horizontal form-bordered" action="#">
-                                    <div class="panel-body">
-                                        <select id="options">
-                                            <option value="" disabled selected>Select an option</option>
-                                            <option value="Option 1">Option 1</option>
-                                            <option value="Option 2">Option 2</option>
-                                            <option value="Option 3">Option 3</option>
-                                        </select>
-                                    </div>
-                                    <div class="panel-body">
-                                        <select id="choices">
-                                            <option value="" disabled selected>Please select an option</option>
-                                        </select>
-                                    </div>
-
 							<div class="panel-body">
 									<form class="form-horizontal form-bordered" action="#">
                                             <div class="form-group">
-                                                <label class="col-md-3 control-label">Profesinoes</label>
+                                                <label class="col-md-3 control-label">Título Asociado</label>
                                                 <div class="col-md-6">
-                                                    <!-- multiple="multiple" -->
-                                                    <select class="form-control"  data-plugin-multiselect id="ms_example0">
-                                                        <option value="...">Electricista</option>
-                                                            <option value="...">Gasista</option>
-                                                            <option value="...">Herrero/a</option>
-                                                            <option value="...">Plomero/a</option>
-                                                            <option value="...">Soldador/a</option>
-                                                            <option value="...">Técnico/a aire acondicionado</option>
-                                                            <option value="...">Técnico/a de electrodomesticos</option>
-                                                            <option value="...">Esteticista corporal</option>
-                                                            <option value="...">Esteticista facial</option>
-                                                            <option value="...">Manicura y depilador/a</option>
-                                                            <option value="...">Maquillador/a</option>
-                                                            <option value="...">Peluquero/a</option>
-                                                            <option value="...">Diseñador/a web y gráfico</option>
-                                                            <option value="...">Técnico/a de PC</option>
-                                                            <option value="...">Bicicletero/a</option>
-                                                            <option value="...">Diseño, costura, arreglos y otros</option>
-                                                            <option value="...">Marroquinero/a</option>
-                                                            <option value="...">Realizador/a de video</option>
-                                                            <option value="...">Sonidista</option>
-                                                            <option value="...">Catering, repostería y otros</option>
-                                                    </select>
+													<select class="form-control"  data-plugin-multiselect id="ms_example0">
+													@foreach($categoria_all as $categoria)
+														<option value="{{$categoria->name}}">{{$categoria->name}}</option>
+													@endforeach
+													</select>
                                                 </div>
                                                 <!-- <button id="ms_example7-toggle" class="btn btn-primary">Seleccionar</button> -->
                                             </div>
 
+										 <!--
                                         <div class="form-group">
-											<label class="col-md-3 control-label">Título</label>
+											<label class="col-md-3 control-label">Título Asociado</label>
 											<div class="col-md-6">
-                                                <!-- multiple="multiple" -->
+                                               
 												<select class="form-control"  data-plugin-multiselect id="ms_example0" multiple >
 													<option value="...">Electricista</option>
 													 <option value="...">Gasista</option>
@@ -149,9 +117,9 @@ var lookup = {
 														<option value="...">Catering, repostería y otros</option>
 												</select>
 											</div>
-											<!-- <button id="ms_example7-toggle" class="btn btn-primary">Seleccionar</button> -->
+											
 										</div>
-
+ 										-->
 
                                         <!--
 
@@ -186,28 +154,7 @@ var lookup = {
                                     </div>
                                 </div>
 
-<script type="text/javascript">
-new TINY.editor.edit('editor',{
-	id:'input',
-	width:600,
-	height:175,
-	cssclass:'te',
-	controlclass:'tecontrol',
-	rowclass:'teheader',
-	dividerclass:'tedivider',
-	controls:['bold','italic','underline','strikethrough','|','subscript','superscript','|',
-			  'orderedlist','unorderedlist','|','outdent','indent','|','leftalign',
-			  'centeralign','rightalign','blockjustify','|','unformat','|','undo','redo','n',
-			  'font','size','style','|','image','hr','link','unlink','|','cut','copy','paste',],
-	footer:true,
-	fonts:['Verdana','Arial','Georgia','Trebuchet MS'],
-	xhtml:true,
-	cssfile:'style.css',
-	bodyid:'editor',
-	footerclass:'tefooter',
-	resize:{cssclass:'resize'}
-});
-</script>
+
 
 
 

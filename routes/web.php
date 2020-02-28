@@ -26,7 +26,6 @@ Route::get('/', function () {
     return view('welcome', compact('categoria_servicios_all', 'categoria_productos_all'));
 });
 
-
 Auth::routes();
 
 Route::get('/register', function () {
@@ -47,8 +46,10 @@ Route::get('/perfil_edit/{id}', 'ProfileController@edit')->name('perfil_edit');
 Route::put('/perfil_update/{id}', 'ProfileController@update')->name('perfil_update');
 Route::get('/avatardelete/{id}', 'UserController@avatardelete')->name('avatardelete');
 Route::put('/avatarupload/{id}', 'UserController@avatarupload')->name('avatarupload');
-Route::get('/publicacion_new',function(){return view('publicacion_new');});
 
+Route::get('/publicacion_new','PublicacionController@publicacion_new')->name('publicacion_new');
+
+Route::get('/publicacion/{id}','PublicacionController@mispublicaciones' )->name('publicacion');
 
 Route::get('/tarifario',function(){
     $user_type_all = User_type::all();
@@ -101,7 +102,7 @@ Route::get('/clave',function(){
 /* ruta estatica al archivo ubicado en  resources/views llamado publicaion.blade.php */
 //Route::get('/perfil',function(){ return view('perfil'); } )->name('perfil');
 
-Route::get('/publicacion',function(){ return view('publicacion'); } )->name('publicacion');
+
 Route::get('/foto_especifico',function(){ return view('foro_especifico'); } )->name('foroX');
 Route::get('/foro_tema',function(){ return view('foro_tema'); } )->Name('foroT');
 Route::get('/foro',function(){ return view('foro'); } )->Name('foro');

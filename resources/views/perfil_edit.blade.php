@@ -36,7 +36,7 @@
 										<a href="{{ Url('/perfil') }}" ><i class="fa fa-user"></i> Perfil</a>
 									</li>
 									<li>
-										<a href="{{ Url('/publicacion') }}" ><i class="fa fa-file-powerpoint-o"></i> Publicación</a>
+										<a href="{{ route('publicacion', ['id'=> $user->id]) }}" ><i class="fa fa-file-powerpoint-o"></i> Publicación</a>
 									</li>
 
 
