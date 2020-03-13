@@ -43,7 +43,8 @@
 										<a href="{{ Url('/perfil') }} " ><i class="fa fa-user"></i> Perfil</a>
 									</li>
 									<li class="active">
-										<a href="{{ Url('/publicacion') }} " ><i class="fa fa-file-powerpoint-o"></i> Publicación</a>
+									<!-- "{{ route('publicacion', ['id'=> $user->id]) }}" -->
+										<a href="{{ route('publicacion', ['id'=> $user->id]) }}"><i class="fa fa-file-powerpoint-o"></i> Publicaciones</a>
 									</li>
 
 
@@ -54,9 +55,15 @@
 
 
 							<div class="row">
+									@if (Session::has('message'))
+                                    <div class="alert alert-success">
+                                        <p>{{ Session::get('message') }}</p>
+                                    </div>
+                                    @endif
 								<div class="col-sm-6">
 									<div class="mb-md">
-										<a href="{{ Url('/publicacion_new') }}">
+									
+										<a href="{{ route('publicacion_new', ['id'=> $user->id]) }}">
 										    <button id="addToTable" class="btn btn-primary">Agregar Publicación </button>
                                         </a>
                                     </div>

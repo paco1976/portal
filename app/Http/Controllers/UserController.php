@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\User;
+use App\Titulo;
+use App\Categoria;
 use App\User_Cfp;
 use App\User_type;
 use App\User_Profile;
@@ -25,6 +27,7 @@ class UserController extends Controller
     //redirigue dependiendo el tipo de usuario
     public function index(){
         $user = User::find(Auth::user()->id);
+        //dd($user);
         $user_profile = User_Profile::where('user_id',$user->id)->first();
         $user_cfp = User_Cfp::where('id',$user->cfp_id)->first();
         //$public_path = public_path();

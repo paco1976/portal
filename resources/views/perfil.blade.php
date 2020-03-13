@@ -36,7 +36,7 @@
                                     </li>
                                     @if ($user_profile)
 									<li>
-										<a href="{{ route('publicacion', ['id'=> $user->id]) }}" ><i class="fa fa-file-powerpoint-o"></i> Publicación</a>
+										<a href="{{ route('publicacion', ['id'=> $user->id]) }}" ><i class="fa fa-file-powerpoint-o"></i> Publicaciones</a>
                                     </li>
                                     @endif
 

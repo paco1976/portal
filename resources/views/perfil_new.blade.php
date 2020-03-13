@@ -35,11 +35,7 @@
 									<li class="active">
 										<a href="{{ Url('perfil') }}" ><i class="fa fa-user"></i> Perfil</a>
 									</li>
-
-
-
-
-								</ul>
+                			</ul>
 						<div class="tab-content">
 						<div id="perfil" class="tab-pane active">
 
@@ -78,7 +74,7 @@
                                             <br>
                                             -->
 
-                                            <label>{{ __('Celular (*)') }}</label                                            >
+                                            <label>{{ __('Celular (*)') }}</label>
                                             <input id="mobile" type="text" class="form-control @error('mobile') is-invalid @enderror" name="mobile" value="{{ old('mobile') }}" required autocomplete="mobile" autofocus>
                                             @error('mobile')
                                                 <span class="invalid-feedback" role="alert">
@@ -90,7 +86,7 @@
                                             <label>{{ __('CFP (*)') }}</label>
                                             <select class="form-control" name="user_cfp"  id="subject" required>
                                                     @if ($user_cfp->id)
-                                                    <option value='{{ old('user_cfp',$user_cfp->id) }}'>{{ old('name',$user_cfp->name) }}</option>
+                                                    <option value="{{ old('user_cfp',$user_cfp->id) }}">{{ old('name',$user_cfp->name) }}</option>
                                                     @endif
                                                 @foreach ($user_cfp_all as $user_cfp)
                                                     <option value='{{ $user_cfp->id }}'>{{ $user_cfp->name }}</option>

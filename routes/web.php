@@ -47,8 +47,8 @@ Route::put('/perfil_update/{id}', 'ProfileController@update')->name('perfil_upda
 Route::get('/avatardelete/{id}', 'UserController@avatardelete')->name('avatardelete');
 Route::put('/avatarupload/{id}', 'UserController@avatarupload')->name('avatarupload');
 
-Route::get('/publicacion_new','PublicacionController@publicacion_new')->name('publicacion_new');
-
+Route::get('/publicacion_new/{id}','PublicacionController@publicacion_new')->name('publicacion_new');
+Route::put('/publicacion_new/{id}', 'PublicacionController@publicacion_save')->name('publicacion_save');
 Route::get('/publicacion/{id}','PublicacionController@mispublicaciones' )->name('publicacion');
 
 Route::get('/tarifario',function(){
