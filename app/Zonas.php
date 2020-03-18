@@ -21,10 +21,13 @@ class Zonas extends Model
     protected $fillable = [
         'name',
     ];
+
     public function users() {
         return $this->belongsToMany('App\User');
     }
+
     public function todaslaszonas(){
         return $this->belongsToMany('App\Zonas');
     }
+    
 }

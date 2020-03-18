@@ -29,7 +29,16 @@ class PublicacionController extends Controller
     }
     public function mispublicaciones($id){
         $user = User::find(Auth::user()->id);
-        $publicacion_all = $user->publicaciones();
+        //$publicacion_all = $user->publicaciones();
+        //dd($publicacion_all);
+        $publicacion_all = Publicacion::all();
+        /*        
+        
+        foreach($publicacion_all as $publicacion) {
+            $publicacion->categoria = Categoria::where('id',$publicacion->categoria_id)->first();
+        }
+        */
+        //$publicacion_all = Publicacion::where('user_id',$user->id)->get();
         //dd($publicacion_all);
         return view('/publicacion', compact('publicacion_all', 'user'));
     }
@@ -85,10 +94,21 @@ class PublicacionController extends Controller
         $user->avatar = $path;
         $user->save(['avatar']);
         */
+
+        
+        $user->publicaciones()->attach(Publicacion::where('id', $publicacion->id)->first());
+        
+        /*
+        foreach(request('capacitacion') as $capa) {
+            $artista->capacitaciones()->attach(Capacitacion::where('description', $capa)->first());
+        }
+        */
+
         Session::flash('message', 'La publicación se creo con éxito');
         
         //$this->mispublicaciones($id);
         $publicacion_all = $user->publicaciones();
+        //$this->mispublicaciones($user->id);
         return view('/publicacion', compact('publicacion_all', 'user'));
     }
 

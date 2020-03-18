@@ -1,6 +1,7 @@
 <?php
 
 namespace App;
+use App\Publicacion;
 
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
@@ -39,6 +40,8 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+
     public function user_profile(){
         $profiles = $this->hasMany('App\User_Profile');
         //dd($profiles);
@@ -54,9 +57,10 @@ class User extends Authenticatable
         return $this->belongsToMany('App\Zonas');
     }
     
-    public function publicaciones()
-    {
-        return $this->belongsToMany('App\Publicacion')->withTimestamps();
+    public function publicaciones(){
         //return $this->hasMany('App\Publicacion');
+        //morghToMany()
+        return $this->belongsToMany('App\Publicacion');
     }
+   
 }

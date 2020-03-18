@@ -79,6 +79,5 @@ class UserController extends Controller
         Session::flash('message', 'La imagen se a actualizo con éxito');
         return redirect('perfil');
     }
-
  
 }

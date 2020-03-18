@@ -6,6 +6,7 @@ use App\User_Cfp;
 use App\User_type;
 use App\User;
 use App\User_Profile;
+use App\Publicacion;
 use Illuminate\Http\Request;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
 
@@ -32,6 +33,7 @@ class HomeController extends Controller
         $user_profile = User_Profile::where('user_id',$user->id)->first();
         $user_type_all = User_type::all();
         $user_cfp_all = User_Cfp::all();
+        
         return view('perfil', compact('user', 'user_type_all','user_cfp_all', 'user_profile'));
         //return view('perfil');
     }
