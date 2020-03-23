@@ -20,18 +20,31 @@ use Intervention\Image\Image;
 use Illuminate\Http\Request;
 
 
-
 class PublicacionController extends Controller
 {
     public function __construct()
     {
         $this->middleware('auth');
     }
+
+
     public function mispublicaciones($id){
         $user = User::find(Auth::user()->id);
         //$publicacion_all = $user->publicaciones();
         //dd($publicacion_all);
-        $publicacion_all = Publicacion::all();
+        //$publicacion_all = Publicacion::all();
+        $mispublicaciones = $user->publicaciones()->get();
+        //$titulo = $publicacion->titulo()->get('description');
+        foreach($mispublicaciones as $publicacion) {
+            $publicacion->categoria =  $publicacion->categoria()->get();
+            $publicacion->titulo = $publicacion->titulo()->get();
+            //dd($publicacion->titulo);
+        }
+        //dd($mispublicaciones);
+        //$titulo = $publicacion->titulo()->get('description');
+
+		//{{$titulo->description}}
+        //dd($mispublicaciones);
         /*        
         
         foreach($publicacion_all as $publicacion) {
@@ -40,7 +53,7 @@ class PublicacionController extends Controller
         */
         //$publicacion_all = Publicacion::where('user_id',$user->id)->get();
         //dd($publicacion_all);
-        return view('/publicacion', compact('publicacion_all', 'user'));
+        return view('/publicacion', compact('mispublicaciones', 'user'));
     }
     public function publicacion_new($id){
         $user = User::find(Auth::user()->id);
@@ -60,7 +73,6 @@ class PublicacionController extends Controller
     public function publicacion_save($id){
         $user = User::find($id);
         //dd($user);
-
         $data = request()->validate([
             'titulo_id' => 'required',
             'description' => 'required',
@@ -71,8 +83,6 @@ class PublicacionController extends Controller
         
         $titulo = titulo::where('id', $data['titulo_id'])->first();
         //dd($titulo);
-        
-        
         /*
         foreach(request('zonas') as $zona) {
             $user->zonas()->attach(Zonas::where('name', $zona)->first());
@@ -86,7 +96,6 @@ class PublicacionController extends Controller
             'aprobado'=>0,
             'activo'=>1,
         ]);
-        
         /*
         $path = request()->file('avatar')->store('avatares');
         //$path = Storage::url($path);
@@ -94,18 +103,13 @@ class PublicacionController extends Controller
         $user->avatar = $path;
         $user->save(['avatar']);
         */
-
-        
         $user->publicaciones()->attach(Publicacion::where('id', $publicacion->id)->first());
-        
         /*
         foreach(request('capacitacion') as $capa) {
             $artista->capacitaciones()->attach(Capacitacion::where('description', $capa)->first());
         }
         */
-
         Session::flash('message', 'La publicación se creo con éxito');
-        
         //$this->mispublicaciones($id);
         $publicacion_all = $user->publicaciones();
         //$this->mispublicaciones($user->id);

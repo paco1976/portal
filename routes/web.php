@@ -19,12 +19,16 @@ use Illuminate\Support\Facades\Storage;
 |
 */
 
+/*
 Route::get('/', function () {
     $categoria_servicios_all = Categoria::where(['categoria_tipo_id' => 1,'active' => 1])->get();
     $categoria_productos_all = Categoria::where(['categoria_tipo_id' => 2,'active' => 1])->get();
     //dd($categoria_productos_all);
     return view('welcome', compact('categoria_servicios_all', 'categoria_productos_all'));
 });
+*/
+
+Route::get('/', 'PublicController@index')->name('welcome');
 
 Auth::routes();
 
@@ -33,6 +37,7 @@ Route::get('/register', function () {
     $user_cfp_all = User_Cfp::all();
     return view('auth/register', compact('user_type_all', 'user_cfp_all'));
 })->name('register');
+
 
 
 //Route::get('/home', 'HomeController@index')->name('home');
@@ -50,6 +55,7 @@ Route::put('/avatarupload/{id}', 'UserController@avatarupload')->name('avatarupl
 Route::get('/publicacion_new/{id}','PublicacionController@publicacion_new')->name('publicacion_new');
 Route::put('/publicacion_new/{id}', 'PublicacionController@publicacion_save')->name('publicacion_save');
 Route::get('/publicacion/{id}','PublicacionController@mispublicaciones' )->name('publicacion');
+Route::get('/homepublicaciones/{id}','PublicController@publicaciones' )->name('homepublicaciones');
 
 Route::get('/tarifario',function(){
     $user_type_all = User_type::all();

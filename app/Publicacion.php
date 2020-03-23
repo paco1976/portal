@@ -17,13 +17,20 @@ class Publicacion extends Model
 
     public function users()
     {
-        return $this
-        ->belongsToMany('App\User');
-        //->withTimestamps();
+        return $this->belongsToMany('App\User')->withTimestamps();
     }
 
     public function user_publicacion(){
-        return $this->belongsTo('App\Publicacion');
+        return $this->belongsToMany('App\Publicacion')->withTimestamps();
     }
+
+    public function categoria(){
+        return $this->belongsTo('App\Categoria');
+    }
+    public function titulo(){
+        return $this->belongsTo('App\Titulo');
+
+    }
+
 
 }

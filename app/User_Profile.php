@@ -12,4 +12,10 @@ class User_Profile extends Model
     protected $fillable = [
         'user_id', 'mobile', 'phone', 'twitter', 'facebook', 'instagram', 'linkedin',
     ];
+
+    //el profile pertenece a
+    public function users() {
+        return $this->belongsTo('App\User');
+    }
+    
 }

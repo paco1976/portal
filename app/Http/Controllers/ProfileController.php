@@ -109,6 +109,8 @@ class ProfileController extends Controller
         //no esta en uso
         $user->profiles = User::find(1)->user_profile;
         $user->cfp = User::find(1)->user_cfp;
+        $zonas_all = Zonas::all();
+        $miszonas = $user->zonas()->get();
         //dd($user);
         //dd($user->cfp->id);
         //$public_path = public_path();
@@ -116,7 +118,7 @@ class ProfileController extends Controller
         //$url = Storage::url($user_profile->photo);
         //$user_profile->photo=$url;
 
-        return view('perfil_edit', compact('user', 'user_cfp', 'user_profile', 'user_cfp_all'));
+        return view('perfil_edit', compact('user', 'user_cfp', 'user_profile', 'user_cfp_all', 'miszonas', 'zonas_all'));
     }
 
     public function update($id){
@@ -147,6 +149,15 @@ class ProfileController extends Controller
         $user->save(['user_cfp']);
 
         $user_profile->save(['mobile', 'phone', 'twitter', 'facebook', 'instagram', 'linkedin']);
+        $zonas_all = Zonas::all();
+
+        foreach($zonas_all as $zona) {
+            $user->zonas()->detach(Zonas::where('name', $zona)->first());
+        }
+
+        foreach(request('zonas') as $zona) {
+            $user->zonas()->attach(Zonas::where('name', $zona)->first());
+        }
 
         Session::flash('message', 'El perfil se actualizado con éxito');
         return redirect('perfil');

@@ -20,7 +20,7 @@ class Categoria extends Model
     public function publicaciones(){
         $publicaciones = $this->hasMany('App\Publicacion');
         //dd($profiles);
-        dd($publicaciones);
+        //dd($publicaciones);
         return $publicaciones;
     }
     public function categorias(){

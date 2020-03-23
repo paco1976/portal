@@ -30,11 +30,11 @@ class HomeController extends Controller
     public function index()
     {
         $user = User::find(Auth::user()->id);
+        $miszonas = $user->zonas()->get();
         $user_profile = User_Profile::where('user_id',$user->id)->first();
         $user_type_all = User_type::all();
         $user_cfp_all = User_Cfp::all();
-        
-        return view('perfil', compact('user', 'user_type_all','user_cfp_all', 'user_profile'));
-        //return view('perfil');
+        return view('perfil', compact('user', 'user_type_all','user_cfp_all', 'user_profile', 'miszonas'));
     }
+    
 }

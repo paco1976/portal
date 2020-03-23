@@ -8,6 +8,7 @@ use App\Categoria;
 use App\User_Cfp;
 use App\User_type;
 use App\User_Profile;
+use App\Zonas;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
@@ -28,7 +29,11 @@ class UserController extends Controller
     public function index(){
         $user = User::find(Auth::user()->id);
         //dd($user);
-        $user_profile = User_Profile::where('user_id',$user->id)->first();
+        $miszonas = $user->zonas()->get();
+        //dd($miszonas);
+        $user_profile = $user->user_profile()->first();
+        //dd($user_profile);
+        //$user_profile = User_Profile::where('user_id',$user->id)->first();
         $user_cfp = User_Cfp::where('id',$user->cfp_id)->first();
         //$public_path = public_path();
         //$url = Storage::url($user_profile->photo);
@@ -41,7 +46,7 @@ class UserController extends Controller
 
         if ($user->type_id==1) {
             //return view('perfil', compact('user'), compact('user_profile'), compact('user_cfp'));
-            return view('perfil', compact('user', 'user_profile', 'user_cfp'));
+            return view('perfil', compact('user', 'user_profile', 'user_cfp', 'miszonas'));
         }else {
             return redirect('/');
         }

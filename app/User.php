@@ -43,9 +43,7 @@ class User extends Authenticatable
 
 
     public function user_profile(){
-        $profiles = $this->hasMany('App\User_Profile');
-        //dd($profiles);
-        return $profiles;
+        return $this->hasMany('App\User_Profile');
     }
 
     public function user_cfp(){
@@ -61,6 +59,15 @@ class User extends Authenticatable
         //return $this->hasMany('App\Publicacion');
         //morghToMany()
         return $this->belongsToMany('App\Publicacion');
+    }
+
+    public function hasZona($zon)
+    {   
+        
+        if ($this->zonas()->where('name', $zon->name)->first()) {
+            return true;
+        }
+        return false;
     }
    
 }

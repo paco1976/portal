@@ -73,31 +73,33 @@
 							<br>
 							
 							<!--Acá va el ir para chequear las publicaciones -->
-							@if(!$publicacion_all)
+							@if(!$mispublicaciones)
 								<p>Por el momento no tienes publicaciones</p>
 							@else
 								<table class="table table-bordered table-striped mb-none" id="datatable-editable">
 									<thead>
 
 										<tr>
-											<th>Título</th>
+											<th>Título Relacionado</th>
 											<th>Categoría</th>
 											<th>Visitas</th>
 											<th>Aprobado</th>
-											<th>Editar/Eliminar</th>
+											<th>Acción</th>
 										</tr>
 									</thead>
 									<tbody>
-										@foreach($publicacion_all as $publicacion)
+										@foreach($mispublicaciones as $publicacion)
 										<tr class="gradeX">
-											<td>{{$publicacion->titulo_id}}</td>
-											<td>{{$publicacion->categoria_id}}</td>
+											<td>
+												{{$publicacion->titulo[0]->name}}
+											</td>
+											<td>{{$publicacion->categoria[0]->name}}</td>
 											<td>{{$publicacion->view}}</td>
 											<td>{{$publicacion->aprobado}}</td>
 									
 											<td class="actions">
-											<a href="#" class="on-default edit-row"><i class="fa fa-pencil"></i></a>
-											<a href="#" class="on-default remove-row"><i class="fa fa-trash-o"></i></a>
+											<a href="#" class="on-default edit-row"><i class="fa fa-pencil">Edit </i></a>
+											<a href="#" class="on-default remove-row"><i class="fa fa-trash-o">Deete </i></a>
 											</td>
 										</tr>
 										@endforeach

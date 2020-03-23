@@ -165,6 +165,31 @@
                                         </section>
                                     </div>
                                     </div>
+                                    <a href="#" class="btn btn-default fileupload-new" data-dismiss="fileupload">Zonas de trabajo </a>
+                                    
+                                    <ul class="portfolio-list sort-destination" data-sort-id="portfolio">
+                                    
+                                    @if($zonas_all)
+                                        @foreach($zonas_all as $zona)
+                                            <li class="col-md-4 col-sm-6 col-xs-12 isotope-item websites">
+                                            @if($user->hasZona($zona))
+                                                <label for="">
+                                                <input type="checkbox" name="zonas[]" value="{{ $zona->name }}" multiple ria-label="Radio button for following text input" checked> {{ $zona->name }}
+                                                </label><br>
+                                            @else
+                                            <label for="">
+                                            <input type="checkbox" name="zonas[]" value="{{ $zona->name }}" multiple ria-label="Radio button for following text input"> {{ $zona->name }}
+                                            </label><br>
+                                            @endif
+                                            
+                                                
+                                            </li>
+                                        @endforeach
+                                    @else  
+                                        <p>Ups! Algo ocurrio con las zonas</p>
+                                    @endif
+
+
                                     <button type="submit" class="btn btn-primary">Guardar Datos</button>
 
                                     </form>

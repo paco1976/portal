@@ -91,7 +91,7 @@
                             @foreach($categoria_servicios_all as $categoria)
                             <li class="col-md-4 col-sm-6 col-xs-12 isotope-item websites">
 								<div class="portfolio-item img-thumbnail">
-									<a href="#" class="thumb-info">
+									<a href="{{ route('homepublicaciones', ['id'=> $categoria->id]) }}" class="thumb-info">
 										<img alt="" class="img-responsive" src="{{ asset($categoria->icon) }}">
 										<span class="thumb-info-title">
 											<span class="thumb-info-inner">{{ $categoria->name }}</span>

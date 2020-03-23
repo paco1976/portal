@@ -120,16 +120,30 @@
                                                 <label>{{ __('Linkedin') }}</label>
                                                 <input class="form-control" type="text" placeholder="{{ $user_profile->linkedin }}"><br>
                                             @endif
+                                            
+                                            @if(($miszonas))
+                                            <strong>Zonas de trabajo </strong>
+                                            <br>
+                                                @foreach($miszonas as $zona)
+                                                    {{$zona->name}}
+                                                @endforeach
+                                            @else
+                                                UPS!, todavía no elegiste zonas de trabajo
+                                            @endif
                                         </section>
                                     </div>
                                     </div>
                                     <a href="{{ route('perfil_edit', ['id'=> $user->id]) }}" class="btn btn-primary" data-dismiss="fileupload">Editar</a>
                                     @endif
+                                    
                                 </div>
+                                
                             </div>
-                        </div>
 
+                        </div>
+                        
                     </div>
+                    
                 </div>
             </div>
 

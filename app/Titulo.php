@@ -13,4 +13,12 @@ class Titulo extends Model
         'name', 'description', 'categoria_id',
     ];
 
+    public function publicaciones(){
+        return $this->hasMany('App\Publicacion');
+    }
+
+    public function categoria(){
+        return $this->belongsTo('App\Categoria');
+    }
+
 }

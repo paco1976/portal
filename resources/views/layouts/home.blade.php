@@ -107,7 +107,7 @@
 									</a>
 									<ul class="dropdown-menu">
                                     @foreach($categoria_servicios_all as $categoria)
-                                        <li><a href="#">{{ $categoria->name }}</a></li>
+                                        <li><a href="{{ route('homepublicaciones', ['id'=> $categoria->id]) }} ">{{ $categoria->name }}</a></li>
                                     @endforeach
 
 									</ul>
@@ -120,7 +120,7 @@
                                     </a>
                                     <ul class="dropdown-menu">
                                     @foreach($categoria_productos_all as $categoria)
-                                        <li><a href="#">{{ $categoria->name }}</a></li>
+                                        <li><a href="{{ route('homepublicaciones', ['id'=> $categoria->id]) }}">{{ $categoria->name }}</a></li>
                                     @endforeach
 
                                     </ul>
