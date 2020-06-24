@@ -85,6 +85,7 @@
 											<th>Visitas</th>
 											<th>Aprobado</th>
 											<th>Acción</th>
+											
 										</tr>
 									</thead>
 									<tbody>
@@ -95,12 +96,19 @@
 											</td>
 											<td>{{$publicacion->categoria[0]->name}}</td>
 											<td>{{$publicacion->view}}</td>
-											<td>{{$publicacion->aprobado}}</td>
+											<td>
+											@if($publicacion->aprobado==0)
+												<strong>Pendiente</strong>
+											@else
+												<strong>Aprobado</strong>
+											@endif
+											</td>
 									
 											<td class="actions">
 											<a href="#" class="on-default edit-row"><i class="fa fa-pencil">Edit </i></a>
 											<a href="#" class="on-default remove-row"><i class="fa fa-trash-o">Deete </i></a>
 											</td>
+											
 										</tr>
 										@endforeach
 											

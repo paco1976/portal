@@ -48,7 +48,7 @@
 									<div id="publicacion" class="tab-pane active">
 
 							<div class="panel-body">
-									<form class="form-horizontal form-bordered" action="{{ route('publicacion_save', ['id'=> $user->id]) }}" method="post" enctype="multipart/form-data" >
+									<form class="form-horizontal form-bordered" action="{{ route('publicacion_save', ['id'=> $user->id]) }}" method="POST" enctype="multipart/form-data" >
                         			{{ method_field('PUT') }}
                         			@csrf
                                             <div class="form-group">

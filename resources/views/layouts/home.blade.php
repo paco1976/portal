@@ -67,7 +67,7 @@
 				<div class="container">
 					<div class="logo">
 						<a href="{{ url('/') }}">
-							<img alt="CFP" width="278" height="67" data-sticky-width="227" data-sticky-height="55" src="img/logo.png">
+							<img alt="CFP" width="278" height="67" data-sticky-width="227" data-sticky-height="55" src="{{ url('img/logo.png') }}">
 						</a>
 					</div>
 					<div class="search">

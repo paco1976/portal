@@ -32,5 +32,10 @@ class Publicacion extends Model
 
     }
 
+    //el profile pertenece a
+    public function imagenes() {
+        return $this->hasmany('App\Publicacion');
+    }
+
 
 }

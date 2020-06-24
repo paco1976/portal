@@ -29,9 +29,18 @@ class UserController extends Controller
     public function index(){
         $user = User::find(Auth::user()->id);
         //dd($user);
+        if($user->avatar == '/img/team/perfil_default.jpg'){
+            //no convierte la url
+        }else{
+            $user->avatar = Storage::disk('avatares')->url($user->avatar);
+            //disk('avatares')
+        }
+        //dd($user->avatar);
         $miszonas = $user->zonas()->get();
         //dd($miszonas);
         $user_profile = $user->user_profile()->first();
+        //$user->avatar =  Storage::disk('avatares')->url($user->avatar);
+        //dd($user->avatar);
         //dd($user_profile);
         //$user_profile = User_Profile::where('user_id',$user->id)->first();
         $user_cfp = User_Cfp::where('id',$user->cfp_id)->first();
@@ -58,7 +67,7 @@ class UserController extends Controller
         $user->avatar = substr($user->avatar, 8);
         //dd($user->avatar);
         Storage::delete([$user->avatar]);
-        Storage::delete(['avatares/j3X9DTwF6EzPdrDF5D5f17vhlpcSF5LMiFeyIS5W.png']);
+        //Storage::delete(['avatares/j3X9DTwF6EzPdrDF5D5f17vhlpcSF5LMiFeyIS5W.png']);
         $user->avatar ='/img/team/perfil_default.jpg';
         $user->save(['avatar']);
 
@@ -75,12 +84,34 @@ class UserController extends Controller
 
     public function avatarupload($id){
         $user = User::find($id);
-        $path = request()->file('avatar')->store('avatares');
+        //subir archivo
+
+        $carpetas = Storage::disk('avatares')->directories();
+        $directorio_existe = false;
+        foreach($carpetas as $carpeta){
+            if($carpeta == $user->id){   
+                $directorio_existe = true;
+            }
+        }
+        if($directorio_existe == false){
+            //$resultado = Storage::makeDirectory('publicaciones/'. $publicacion->id, 0755, true);
+            $resultado = Storage::disk('avatares')->makeDirectory($user->id, 0777, true);
+        }
+        //$extension = request()->file('avatar');
+        //este es el que estaba usando
+        $path = Storage::disk('avatares')->putFILE($user->id, request()->file('avatar'));
+        
+        //$size = Storage::disk('avatares')->size($path);
+        
+        //$path = request()->file('avatar')->store('public');
+
+        //$path = request()->file('avatar')->store('avatares');
+        //dd($path);
         //$path = Storage::url($path);
-        $path = 'storage/'. $path;
+        //$path = 'avatares/'. $path;
         $user->avatar = $path;
         $user->save(['avatar']);
-
+        //dd($path);
         Session::flash('message', 'La imagen se a actualizo con éxito');
         return redirect('perfil');
     }
