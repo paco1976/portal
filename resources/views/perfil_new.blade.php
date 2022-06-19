@@ -39,7 +39,7 @@
 						<div class="tab-content">
 						<div id="perfil" class="tab-pane active">
 
-                    <form action="{{ route('store', ['id'=> $user->id]) }}" method="post" enctype="multipart/form-data" >
+                    <form action="{{ route('store') }}" method="post" enctype="multipart/form-data" >
                         {{ method_field('PUT') }}
                         @csrf
                             <div class="row">
@@ -74,8 +74,9 @@
                                             <br>
                                             -->
 
-                                            <label>{{ __('Celular (*)') }}</label>
-                                            <input id="mobile" type="text" class="form-control @error('mobile') is-invalid @enderror" name="mobile" value="{{ old('mobile') }}" required autocomplete="mobile" autofocus>
+                                            <label>{{ __('Celular (*)') }} Ej: 1155668899, sin guiones y sin cero delante.</label>
+                                            
+                                            <input id="mobile" type="number" class="form-control @error('mobile') is-invalid @enderror" name="mobile" value="{{ old('mobile') }}" required autocomplete="mobile" autofocus>
                                             @error('mobile')
                                                 <span class="invalid-feedback" role="alert">
                                                     <strong>{{ $message }}</strong>
@@ -99,8 +100,8 @@
                                             @enderror
                                             <br>
 
-                                            <label>{{ __('Telefono Fijo') }}</label                                            >
-                                            <input id="phono" type="text" class="form-control @error('phono') is-invalid @enderror" name="phono" value="{{ old('phono') }}" autocomplete="phono" autofocus>
+                                            <label>{{ __('Telefono Fijo') }} Sin guiones</label                                            >
+                                            <input id="phono" type="number" class="form-control @error('phono') is-invalid @enderror" name="phono" value="{{ old('phono') }}" autocomplete="phono" autofocus>
                                             @error('phono')
                                                 <span class="invalid-feedback" role="alert">
                                                     <strong>{{ $message }}</strong>
@@ -156,9 +157,14 @@
                                 -->
 
                                 <a href="#" class="btn btn-default fileupload-new" data-dismiss="fileupload">Zonas de trabajo </a>
-
+                                
 
                                 <ul class="portfolio-list sort-destination" data-sort-id="portfolio">
+                                    <li class="col-md-4 col-sm-6 col-xs-12 isotope-item websites">
+                                        <label for="">
+                                        <input type="checkbox" name="select-all" onclick="toggle(this);" multiple ria-label="Radio button for following text input"> Todos los barrios
+                                        </label><br>
+                                    </li>
                                 @if($zonas_all)
                                     @foreach($zonas_all as $zona)
                                     <li class="col-md-4 col-sm-6 col-xs-12 isotope-item websites">
@@ -179,7 +185,7 @@
                                 </div>
                                 -->
                                 
-                                <button type="submit">Guardar</button>
+                                <button type="submit" class="btn btn-primary">Guardar</button>
                                 <!-- <a href="#" class="btn btn-primary" data-dismiss="fileupload">Guardar</a> -->
 
                             </div>

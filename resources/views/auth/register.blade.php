@@ -73,6 +73,20 @@
                                     </div>
 
                                     <div class="form-group row">
+                                        <label for="dni" class="col-md-4 col-form-label text-md-right">{{ __('D.N.I.') }}</label>
+
+                                        <div class="col-md-6">
+                                            <input id="last_name" type="text" class="form-control @error('dni') is-invalid @enderror" name="dni" value="{{ old('dni') }}" required autocomplete="DNI" autofocus>
+
+                                            @error('dni')
+                                                <span class="invalid-feedback" role="alert">
+                                                    <strong>{{ $message }}</strong>
+                                                </span>
+                                            @enderror
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group row">
                                         <label class="col-md-4 col-form-label text-md-right">{{ __('Imagen de pefil') }} </label>
 
                                         <div class="col-md-6">
@@ -91,6 +105,7 @@
                                         <label class="col-md-4 col-form-label text-md-right">{{ __('Perfil de Usuario') }}</label>
                                         <div class="col-md-6">
                                             <select class="form-control" name="user_type"  id="subject" required>
+                                                <option value="">Seleccione una opción</option>
                                                 @foreach ($user_type_all as $user_type)
                                                     <option value='{{ $user_type->id }}'>{{ $user_type->name }}</option>
                                                 @endforeach
@@ -107,7 +122,8 @@
                                     <div class="form-group row">
                                         <label class="col-md-4 col-form-label text-md-right">{{ __('CFP') }}</label>
                                         <div class="col-md-6">
-                                            <select class="form-control" name="user_cfp"  id="subject" required>
+                                            <select class="form-control"  name="user_cfp"  id="subject" required>
+                                                <option value="">Seleccione una opción</option>
                                                 @foreach ($user_cfp_all as $user_cfpx)
                                                     <option value='{{ $user_cfpx->id }}'>{{ $user_cfpx->name }}</option>
                                                 @endforeach
@@ -160,7 +176,7 @@
                                     <div class="form-group row mb-0">
                                         <div class="col-md-6 offset-md-4">
                                             <button type="submit" class="btn btn-primary">
-                                                {{ __('Register') }}
+                                                {{ __('Regsitrar') }}
                                             </button>
                                         </div>
                                     </div>

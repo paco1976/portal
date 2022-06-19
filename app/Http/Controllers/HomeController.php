@@ -9,6 +9,7 @@ use App\User_Profile;
 use App\Publicacion;
 use Illuminate\Http\Request;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
+use Illuminate\Support\Facades\Hash;
 
 class HomeController extends Controller
 {
@@ -28,8 +29,10 @@ class HomeController extends Controller
      * @return \Illuminate\Contracts\Support\Renderable
      */
     public function index()
-    {
+    {   
         $user = User::find(Auth::user()->id);
+        $user->type = $user->user_type()->first();
+       
         $miszonas = $user->zonas()->get();
         $user_profile = User_Profile::where('user_id',$user->id)->first();
         $user_type_all = User_type::all();

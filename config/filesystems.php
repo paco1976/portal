@@ -54,11 +54,18 @@ return [
             'url' => env('APP_URL').'/storage',
             'visibility' => 'public',
         ],
-
+        
         'publicaciones' => [
             'driver' => 'local',
             'root' => storage_path('app/public/publicaciones'),
-            'url' => env('APP_URL').'/storage//publicaciones',
+            'url' => env('APP_URL').'/storage/publicaciones',
+            'visibility' => 'public',
+        ],
+
+        'categorias' => [
+            'driver' => 'local',
+            'root' => storage_path('app/public/categorias'),
+            'url' => env('APP_URL').'/storage/categorias',
             'visibility' => 'public',
         ],
 
@@ -66,6 +73,13 @@ return [
             'driver' => 'local',
             'root' => storage_path('app/public/avatares'),
             'url' => env('APP_URL').'/storage/avatares',
+            'visibility' => 'public',
+        ],
+
+        'interaction' => [
+            'driver' => 'local',
+            'root' => storage_path('app/public/interaction'),
+            'url' => env('APP_URL').'/storage/interaction',
             'visibility' => 'public',
         ],
 

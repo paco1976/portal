@@ -2,6 +2,7 @@
 
 namespace App;
 use App\Publicacion;
+use App\Notifications\ResetPassword;
 
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
@@ -20,7 +21,7 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'name', 'last_name', 'avatar','email', 'password', 'type_id','cfp_id',
+        'name', 'last_name', 'dni','avatar','email', 'password', 'hash', 'type_id','cfp_id',
     ];
 
     /**
@@ -51,23 +52,47 @@ class User extends Authenticatable
         //dd($profiles);
         return $user_cfp;
     }
+
+    public function cfp(){
+        return $this->belongsTo('App\User_Cfp');
+    }
+  
+    public function user_type(){
+        return $this->belongsTo('App\User_type', 'type_id');
+    }
+
     public function zonas() {
         return $this->belongsToMany('App\Zonas');
     }
-    
-    public function publicaciones(){
-        //return $this->hasMany('App\Publicacion');
-        //morghToMany()
-        return $this->belongsToMany('App\Publicacion');
-    }
 
-    public function hasZona($zon)
-    {   
-        
+    public function hasZona($zon){   
         if ($this->zonas()->where('name', $zon->name)->first()) {
             return true;
         }
         return false;
     }
    
+    public function publicaciones(){
+        //return $this->hasMany('App\Publicacion');
+        //morghToMany()
+        return $this->belongsToMany('App\Publicacion', 'publicacion_user');
+    }
+    /*
+    public function sendPasswordResetNotification($token)
+    {
+        $this->notify(new ResetPassword($token));
+    }
+    */
+
+    public function cfp_name($id)
+    {   
+        $cfp =  User_Cfp::where('id', $id)->first();
+        //dd($propuesta);
+        return $cfp->name;
+    }
+
+    public function scopeBuscador($query, $name)
+    {
+        return $query->where('name', 'like', "%$name%")->orwhere('last_name', 'like', "%$name%");
+    }
 }

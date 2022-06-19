@@ -36,7 +36,7 @@
                                     </li>
                                     @if ($user_profile)
 									<li>
-										<a href="{{ route('publicacion', ['id'=> $user->id]) }}" ><i class="fa fa-file-powerpoint-o"></i> Publicaciones</a>
+										<a href="{{ route('publicacion') }}" ><i class="fa fa-file-powerpoint-o"></i> Publicaciones</a>
                                     </li>
                                     @endif
 
@@ -57,7 +57,7 @@
                                         </div>
                                         <br>
                                         @if ($user->avatar == '/img/team/perfil_default.jpg')
-                                        <form action="{{ route('avatarupload', ['id'=> $user->id]) }}" method="POST" enctype="multipart/form-data" >
+                                        <form action="{{ route('avatarupload') }}" method="POST" enctype="multipart/form-data" >
                                             {{ method_field('PUT') }}
                                             @csrf
                                             <input type="file" name="avatar" class="form-control" required>
@@ -68,7 +68,7 @@
                                         </form>
 
                                         @else
-                                        <a href="{{ route('avatardelete', ['id'=> $user->id]) }}" class="btn btn-default fileupload-exists" data-dismiss="fileupload">Quitar imagen</a>
+                                        <a href="{{ route('avatardelete') }}" class="btn btn-default fileupload-exists" data-dismiss="fileupload">Quitar imagen</a>
                                         @endif
                                 </div>
 
@@ -83,7 +83,7 @@
                                             </section>
                                         </div>
                                     </div>
-                                    <a href="{{ route('perfil_new', ['id'=> $user->id]) }}" class="btn btn-primary" data-dismiss="fileupload">Completar Perfil</a>
+                                    <a href="{{ route('perfil_new') }}" class="btn btn-primary" data-dismiss="fileupload">Completar Perfil</a>
                                     @else
                                         <section class="form-group-vertical">
                                             <label>{{ __('Celular') }}</label>
@@ -133,7 +133,7 @@
                                         </section>
                                     </div>
                                     </div>
-                                    <a href="{{ route('perfil_edit', ['id'=> $user->id]) }}" class="btn btn-primary" data-dismiss="fileupload">Editar</a>
+                                    <a href="{{ route('perfil_edit') }}" class="btn btn-primary" data-dismiss="fileupload">Editar</a>
                                     @endif
                                     
                                 </div>

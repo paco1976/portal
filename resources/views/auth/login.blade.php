@@ -15,7 +15,7 @@
         </div>
         <div class="row">
             <div class="col-md-12">
-                <h1>LOGIN</h1>
+                <h1>INGRESO</h1>
             </div>
 
         </div>
@@ -60,7 +60,7 @@
                                 <div class="row">
                                     <div class="form-group">
                                         <div class="col-md-8">
-                                            <label for="password" class="col-md-4 col-form-label text-md-right">{{ __('Password') }}</label>
+                                            <label for="password" class="col-md-4 col-form-label text-md-right">{{ __('Contraseña') }}</label>
                                         </div>
 
                                         <div class="col-md-6">
@@ -90,7 +90,7 @@
                                 <div class="form-group row mb-0">
                                     <div class="col-md-8 offset-md-4">
                                         <button type="submit" class="btn btn-primary">
-                                            {{ __('Login') }}
+                                            {{ __('Entrar') }}
                                         </button>
 
                                         @if (Route::has('password.request'))

@@ -24,17 +24,21 @@
 
 					<div class="row">
 						<div class="col-md-6">
-
-							<div class="alert alert-success hidden" id="contactSuccess">
-								<strong>Exito!</strong> Su mensaje nos ha sido enviado.
+							
+							@if (Session::has('message'))
+							<div class="alert alert-success">
+								<p>{{ Session::get('message') }}</p>
 							</div>
-
-							<div class="alert alert-danger hidden" id="contactError">
-								<strong>Error!</strong> Hubo un error al enviar su mensaje.
+							@endif
+							@if (Session::has('error'))
+							<div class="alert alert-danger">
+								<p>{{ Session::get('error') }}</p>
 							</div>
-
+							@endif
 							<h2 class="short"><strong>Hacé una</strong> consulta</h2>
-							<form id="contactForm" action="#" method="POST">
+							<form id="contactForm" action="{{ route('contact_send') }}" method="POST" enctype="multipart/form-data">
+							{{ method_field('PUT') }}  
+                      		@csrf
 								<div class="row">
 									<div class="form-group">
 										<div class="col-md-6">
@@ -51,7 +55,7 @@
 									<div class="form-group">
 										<div class="col-md-12">
 											<label>Asunto</label>
-											<input type="text" value="" data-msg-required="Por favor ingresa tu asunto." maxlength="100" class="form-control" name="subject" id="subject" required>
+											<input type="text" value="" data-msg-required="Por favor ingresa tu asunto." maxlength="100" class="form-control" name="asunto" id="subject" required>
 										</div>
 									</div>
 								</div>
@@ -59,13 +63,14 @@
 									<div class="form-group">
 										<div class="col-md-12">
 											<label>Mensaje *</label>
-											<textarea maxlength="5000" data-msg-required="Por favor ingresa tu mensaje." rows="10" class="form-control" name="message" id="message" required></textarea>
+											<textarea maxlength="5000" data-msg-required="Por favor ingresa tu mensaje." rows="10" class="form-control" name="mensaje" id="message" required></textarea>
 										</div>
 									</div>
 								</div>
 								<div class="row">
 									<div class="col-md-12">
-										<input type="submit" value="Enviar Mensaje" class="btn btn-primary btn-lg" data-loading-text="Cargando...">
+										<!--<input type="submit" value="Enviar Mensaje" class="btn btn-primary btn-lg" data-loading-text="Cargando...">-->
+										<button type="submit" class="btn btn-primary btn-lg">Enviar Mensaje</button>
 									</div>
 								</div>
 							</form>
@@ -82,19 +87,19 @@
 							<h4>Nuestros <strong>Datos</strong></h4>
 							<ul class="list-unstyled">
 								<li><p><i class="fa fa-map-marker"></i> <strong>Dirección:</strong> Morón 2453. Flores, CABA</p></li>
-									<li><p><i class="fa fa-phone"></i> <strong>Telefono:</strong> 4611-5374 / 4637-8465</p></li>
-									<li><p><i class="fa fa-envelope"></i> <strong>Email:</strong> <a href="mailto:info@serviciosprofesionales.com.ar">info@cefeperes.com.ar</a></p></li>
+									<li><p><i class="fa fa-phone"></i> <strong>Telefono:</strong> 1125274751 </p></li>
+									<li><p><i class="fa fa-envelope"></i> <strong>Email:</strong> <a href="mailto:info@cefeperes.com.ar">info@cefeperes.com.ar</a></p></li>
 							</ul>
 
 							<hr />
-
+							<!--
 							<h4>Nuestros <strong>Horarios</strong></h4>
 							<ul class="list-unstyled">
 								<li><i class="fa fa-time"></i> Lunes - Viernes 9am a 5pm</li>
-								<li><i class="fa fa-time"></i> Sabado - 9am a 2pm</li>
+								<li><i class="fa fa-time"></i> Sabado - 9am a 12am</li>
 								<li><i class="fa fa-time"></i> Domingo - Cerrado</li>
 							</ul>
-
+						-->
 						</div>
 
 					</div>

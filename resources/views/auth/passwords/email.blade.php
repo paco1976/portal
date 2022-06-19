@@ -44,6 +44,7 @@
 
                     <form method="POST" action="{{ route('password.email') }}">
                         @csrf
+                    
                     <div class="tab-content">
                         <div id="clave" class="tab-pane active">
                             <div class="row">

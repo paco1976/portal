@@ -12,5 +12,9 @@ class Publicacion_image extends Model
         'publicacion_id', 'name', 'extension', 'size', 'url',
     ];
 
+    public function publicacion(){
+        $publicaciones = $this->belongsTo('App\Publicacion');
+         return $publicaciones;
+    }
     
 }

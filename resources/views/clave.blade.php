@@ -19,7 +19,7 @@
 							<div class="col-md-12">
 								<h1>MI CLAVE</h1>
 							</div>
-
+                            
 						</div>
 					</div>
 				</section>
@@ -42,15 +42,26 @@
 							<div class="tab-content">
 								<div id="clave" class="tab-pane active">
 									<div class="row">
+                                    @if (Session::has('message'))
+                                    <div class="alert alert-success">
+                                        <p>{{ Session::get('message') }}</p>
+                                    </div>
+                                    @endif
+                                    @if (Session::has('error'))
+                                    <div class="alert alert-danger">
+                                        <p>{{ Session::get('error') }}</p>
+                                    </div>
+                                    @endif
 
-                                            <form method="POST" action="{{ route('password.update') }}">
+                                            <form action="{{ route('updatepassword') }}" method="POST" enctype="multipart/form-data" >
+                                            {{ method_field('PUT') }}
                                                 @csrf
                                             <div class="col-md-12">
 
 
                                                 <div class="col-md-12">
-                                                    <label for="email" >{{ __('Correo Electrónico') }}</label>
-                                                    <input id="email" type="email" class="form-control input-lg @error('email') is-invalid @enderror" name="email" value="{{ $email ?? old('email') }}" required autocomplete="email" autofocus>
+                                                    <!-- <label for="email" >{{ __('Correo Electrónico') }}</label> -->
+                                                    <input id="email" type="hidden" class="form-control input-lg @error('email') is-invalid @enderror" name="email" value="{{ $user->email ?? old('email') }}" required autocomplete="email" autofocus readonly>
 
                                                      @error('email')
                                                         <span class="invalid-feedback" role="alert">

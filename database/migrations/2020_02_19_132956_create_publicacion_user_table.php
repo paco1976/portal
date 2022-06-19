@@ -16,7 +16,7 @@ class CreatePublicacionUserTable extends Migration
         Schema::create('publicacion_user', function (Blueprint $table) {
             $table->Increments('id');
             $table->biginteger('publicacion_id')->unsigned();
-            $table->integer('user_id')->unsigned();
+            $table->biginteger('user_id')->unsigned();
             $table->timestamps();
         });
     }

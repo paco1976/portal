@@ -19,4 +19,9 @@ class Categoria_Tipo extends Model
     protected $fillable = [
         'name',
     ];
+
+    public function categorias(){
+        return $this->hasMany('App\Categoria');
+    }
+
 }

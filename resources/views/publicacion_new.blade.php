@@ -33,10 +33,10 @@
 							<div class="tabs">
 								<ul class="nav nav-tabs">
 									<li>
-										<a href="/perfil" ><i class="fa fa-user"></i> Perfil</a>
+										<a href="{{ Url('/perfil') }}" ><i class="fa fa-user"></i> Perfil</a>
 									</li>
 									<li class="active">
-										<a href="{{ route('publicacion', ['id'=> $user->id]) }}"><i class="fa fa-file-powerpoint-o"></i> Publicaciones</a>
+										<a href="{{ route('publicacion') }}"><i class="fa fa-file-powerpoint-o"></i> Publicaciones</a>
 									</li>
 									<li>
 
@@ -47,14 +47,39 @@
 
 									<div id="publicacion" class="tab-pane active">
 
+										<div class="row">
+											@if (Session::has('message'))
+											<div class="alert alert-success">
+												<p>{{ Session::get('message') }}</p>
+											</div>
+											@endif
+											@if (Session::has('error'))
+										<div class="alert alert-danger">
+											<p>{{ Session::get('error') }}</p>
+										</div>
+											@endif
+										<div class="col-sm-6">
+											<div class="mb-md">
+												<!--
+												<a href="{{ route('publicacion_new', ['id'=> $user->id]) }}">
+													<button id="addToTable" class="btn btn-primary">Agregar Publicación </button>
+												</a>
+												-->
+											</div>
+										</div>
+									</div>	
 							<div class="panel-body">
-									<form class="form-horizontal form-bordered" action="{{ route('publicacion_save', ['id'=> $user->id]) }}" method="POST" enctype="multipart/form-data" >
+									<form class="form-horizontal form-bordered" action="{{ route('publicacion_save') }}" method="POST" enctype="multipart/form-data" >
                         			{{ method_field('PUT') }}
-                        			@csrf
+									@csrf
+										<div class="form-group">
+											<h3 class="col-md-9" align="center">Nueva Publicación</h3>
+										</div>
                                             <div class="form-group">
-                                                <label class="col-md-3 control-label">Título Asociado</label>
+                                                <label class="col-md-3 control-label">Título Principal</label>
                                                 <div class="col-md-6">
 													<select class="form-control" name="titulo_id" data-plugin-multiselect id="ms_example0">
+													
 													@foreach($titulo_all as $titulo)
 														<option value="{{$titulo->id}}">{{$titulo->name}}</option>
 													@endforeach
@@ -67,7 +92,12 @@
                                 <div class="form-group">
                                 <label class="col-md-3 control-label">Descripción</label>
                                     <div class="col-md-6">
-                                        <textarea id="input" name="description" style="width:100%; height:200px"></textarea>
+										<textarea id="input" name="description" style="width:100%; height:200px"></textarea>
+										@error('description')
+											<div class="alert alert-danger">
+												<strong>{{ $message }}</strong>
+											</div>
+										@enderror
                                     </div>
                                 </div>
 
@@ -83,7 +113,13 @@
                     <input type="file" name="file[]">
                     <input type="file" name="file[]">
 					<strong>Puede subir como máximo 5 imagenes</strong>
+					@error('file[]')
+						<div class="alert alert-danger">
+							<strong>{{ $message }}</strong>
+						</div>
+					@enderror
 				</div>
+				
 
 
 

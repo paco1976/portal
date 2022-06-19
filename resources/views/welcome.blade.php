@@ -8,7 +8,7 @@
 					<div class="slider" id="revolutionSlider" data-plugin-revolution-slider data-plugin-options='{"startheight": 677}'>
 						<ul>
 							<li data-transition="fade" data-slotamount="10" data-masterspeed="300">
-								<img src="img/slides/slide-bg-4.jpg" data-bgfit="cover" data-bgposition="right center" data-bgrepeat="no-repeat">
+								<img src="img/slides/slide-bg-3.jpg" data-bgfit="cover" data-bgposition="right center" data-bgrepeat="no-repeat">
 
 									<div class="tp-caption sft stb visible-lg"
 										 data-x="350"
@@ -49,7 +49,7 @@
 
 							</li>
 							<li data-transition="fade" data-slotamount="10" data-masterspeed="300">
-								<img src="img/slides/slide-bg-3.jpg" data-bgfit="cover" data-bgposition="right center" data-bgrepeat="no-repeat">
+								<img src="img/slides/slide-bg-4.jpg" data-bgfit="cover" data-bgposition="right center" data-bgrepeat="no-repeat">
 
 								<div class="tp-caption featured-label sft stb"
 									 data-x="center"
@@ -84,12 +84,11 @@
 
 				<div class="container">
 
-
-
 						<ul class="portfolio-list sort-destination" data-sort-id="portfolio">
-
+						
                             @foreach($categoria_servicios_all as $categoria)
                             <li class="col-md-4 col-sm-6 col-xs-12 isotope-item websites">
+							
 								<div class="portfolio-item img-thumbnail">
 									<a href="{{ route('homepublicaciones', ['id'=> $categoria->id]) }}" class="thumb-info">
 										<img alt="" class="img-responsive" src="{{ asset($categoria->icon) }}">
@@ -110,52 +109,7 @@
 					</div>
 
 				</div>
-
-                <section class="page-top">
-					<div class="container">
-						<div class="row">
-
-						</div>
-						<div class="row">
-							<div class="col-md-12">
-								<h1>¿ESTAS ESTAS NECESITANDO RENOVAR TU CASA?</h1>
-							</div>
-						</div>
-					</div>
-				</section>
-
-				<div class="container">
-                    <div class="row">
-                        <!--<p>En esta sección  encontrarás  productos realizados por profesionales que forman parte de la comunidad Cefeperes y también por estudiantes de los talleres de los Centros de Formación,  en el marco de la producción solidaria de insumos. Los recursos  provenientes de esas ventas serán reinvertidos por la cooperadora en  nuevos insumos, para proveer a los cursos</p> -->
-                        <h2>En esta sección  encontrarás  productos realizados por profesionales que forman parte de la comunidad Cefeperes y también por estudiantes de los talleres de los Centros de Formación,  en el marco de la producción solidaria de insumos. Los recursos  provenientes de esas ventas serán reinvertidos por la cooperadora en  nuevos insumos, para proveer a los cursos</h2>
-                    </div>
-
-                    <div class="row">
-
-                            <ul class="portfolio-list sort-destination" data-sort-id="portfolio">
-
-                                @foreach($categoria_productos_all as $categoria)
-                                <li class="col-md-4 col-sm-6 col-xs-12 isotope-item websites">
-                                    <div class="portfolio-item img-thumbnail">
-                                        <a href="#" class="thumb-info">
-                                            <img alt="" class="img-responsive" src="{{ asset($categoria->icon) }}">
-                                            <span class="thumb-info-title">
-                                                <span class="thumb-info-inner">{{ $categoria->name }}</span>
-
-                                            </span>
-                                            <span class="thumb-info-action">
-                                                <span title={{ asset($categoria->name) }} class="thumb-info-action-icon"><i class="fa fa-link"></i></span>
-                                            </span>
-                                        </a>
-                                    </div>
-                                </li>
-                                @endforeach
-
-                            </ul>
-                    </div>
-
-				</div>
-
+			
 			</div>
 
             @endsection

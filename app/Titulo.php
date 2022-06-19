@@ -21,4 +21,10 @@ class Titulo extends Model
         return $this->belongsTo('App\Categoria');
     }
 
+    public function categorias_asociadas() {
+        return $this->belongsToMany('App\Categoria')->withTimestamps();
+        //->withPivot('estado');
+        //->withTimestamps();
+    }
+
 }

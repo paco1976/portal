@@ -36,7 +36,7 @@
 										<a href="{{ Url('/perfil') }}" ><i class="fa fa-user"></i> Perfil</a>
 									</li>
 									<li>
-										<a href="{{ route('publicacion', ['id'=> $user->id]) }}" ><i class="fa fa-file-powerpoint-o"></i> Publicaciones</a>
+										<a href="{{ route('publicacion') }}" ><i class="fa fa-file-powerpoint-o"></i> Publicaciones</a>
 									</li>
 
 
@@ -55,7 +55,7 @@
                                 <div class="col-md-4">
                                         <p class="text-primary">{{ $user->name }} {{ $user->last_name }}</p>
                                         <div class="thumbnail">
-                                            <img alt="" height="300" class="img-responsive" src="{{ asset($user->avatar) }}"/>
+                                            <img alt="" height="300" class="img-responsive" src="{{ asset($user->avatar) }}">
                                         </div>
                                 </div>
 
@@ -70,15 +70,15 @@
                                             </section>
                                         </div>
                                     </div>
-                                    <a href="{{ route('perfil_new', ['id'=> $user->id]) }}" class="btn btn-primary" data-dismiss="fileupload">Completar Perfil</a>
+                                    <a href="{{ route('perfil_new') }}" class="btn btn-primary" data-dismiss="fileupload">Completar Perfil</a>
                                     @else
-                                    <form action="{{ route('perfil_update', ['id'=> $user->id]) }}" method="post" enctype="multipart/form-data" >
+                                    <form action="{{ route('perfil_update') }}" method="post" enctype="multipart/form-data" >
                                         {{ method_field('PUT') }}
                                         @csrf
                                         <section class="form-group-vertical">
 
-                                            <label>{{ __('Celular') }}</label>
-                                            <input class="form-control" type="text" name="mobile" placeholder="" value="{{ old('mobile', $user_profile->mobile)  }}" required>
+                                            <label>{{ __('Celular') }} Ej: 1155668899, sin guiones y sin cero delante.</label>
+                                            <input class="form-control" type="number" name="mobile" placeholder="" value="{{ old('mobile', $user_profile->mobile)  }}" required>
                                             @error('mobile')
                                             <span class="invalid-feedback" role="alert">
                                                 <strong>{{ $message }}</strong>
@@ -106,8 +106,8 @@
 
 
 
-                                            <label>{{ __('Telefono fijo') }}</label>
-                                            <input class="form-control" type="text" name="phono" placeholder="" value="{{ old('phono', $user_profile->phone)  }}">
+                                            <label>{{ __('Telefono fijo') }} Sin guiones</label>
+                                            <input class="form-control" type="number" name="phono" placeholder="" value="{{ old('phono', $user_profile->phone)  }}">
 
                                             @error('phono')
                                             <span class="invalid-feedback" role="alert">
@@ -167,7 +167,14 @@
                                     </div>
                                     <a href="#" class="btn btn-default fileupload-new" data-dismiss="fileupload">Zonas de trabajo </a>
                                     
+                                    
                                     <ul class="portfolio-list sort-destination" data-sort-id="portfolio">
+                                        <li class="col-md-4 col-sm-6 col-xs-12 isotope-item websites">
+                                            <label for="">
+                                            <input type="checkbox" name="select-all" onclick="toggle(this);" multiple ria-label="Radio button for following text input" /> Todos los barrios
+                                            </label><br>
+                                        </li>
+                                    
                                     
                                     @if($zonas_all)
                                         @foreach($zonas_all as $zona)
@@ -181,14 +188,13 @@
                                             <input type="checkbox" name="zonas[]" value="{{ $zona->name }}" multiple ria-label="Radio button for following text input"> {{ $zona->name }}
                                             </label><br>
                                             @endif
-                                            
                                                 
                                             </li>
                                         @endforeach
                                     @else  
                                         <p>Ups! Algo ocurrio con las zonas</p>
                                     @endif
-
+                                    </ul>
 
                                     <button type="submit" class="btn btn-primary">Guardar Datos</button>
 

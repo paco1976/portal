@@ -17,11 +17,8 @@
 						</div>
 						<div class="row">
 							<div class="col-md-12">
-								<h1>MI PUBLICACION</h1>
+								<h1>MIS PUBLICACIONES</h1>
 							</div>
-
-
-
 						</div>
 					</div>
 				</section>
@@ -44,7 +41,7 @@
 									</li>
 									<li class="active">
 									<!-- "{{ route('publicacion', ['id'=> $user->id]) }}" -->
-										<a href="{{ route('publicacion', ['id'=> $user->id]) }}"><i class="fa fa-file-powerpoint-o"></i> Publicaciones</a>
+										<a href="{{ route('publicacion') }}"><i class="fa fa-file-powerpoint-o"></i> Publicaciones</a>
 									</li>
 
 
@@ -59,11 +56,16 @@
                                     <div class="alert alert-success">
                                         <p>{{ Session::get('message') }}</p>
                                     </div>
+									@endif
+									@if (Session::has('error'))
+                                    <div class="alert alert-danger">
+                                        <p>{{ Session::get('error') }}</p>
+                                    </div>
                                     @endif
 								<div class="col-sm-6">
 									<div class="mb-md">
 									
-										<a href="{{ route('publicacion_new', ['id'=> $user->id]) }}">
+										<a href="{{ route('publicacion_new') }}">
 										    <button id="addToTable" class="btn btn-primary">Agregar Publicación </button>
                                         </a>
                                     </div>
@@ -79,12 +81,13 @@
 								<table class="table table-bordered table-striped mb-none" id="datatable-editable">
 									<thead>
 
-										<tr>
+										<tr aliegn="center">
 											<th>Título Relacionado</th>
 											<th>Categoría</th>
 											<th>Visitas</th>
 											<th>Aprobado</th>
-											<th>Acción</th>
+											<th>Consultas</th>
+											<th colspan="2" aliegn="center" >Acción</th>
 											
 										</tr>
 									</thead>
@@ -92,9 +95,9 @@
 										@foreach($mispublicaciones as $publicacion)
 										<tr class="gradeX">
 											<td>
-												{{$publicacion->titulo[0]->name}}
+												{{$publicacion->titulo->name}}
 											</td>
-											<td>{{$publicacion->categoria[0]->name}}</td>
+											<td>{{$publicacion->categoria->name}}</td>
 											<td>{{$publicacion->view}}</td>
 											<td>
 											@if($publicacion->aprobado==0)
@@ -103,10 +106,20 @@
 												<strong>Aprobado</strong>
 											@endif
 											</td>
+											<td>
+											@if($publicacion->cant_consultas>0)
+											<a href="{{ route('publicacion_consultas', ['publicacion_hash'=> $publicacion->hash]) }}" class="btn btn-primary"><strong>{{$publicacion->cant_consultas}} - Ver</strong></a>
+											@else
+											<a href="#" class="btn btn-primary"><i class="fa fa-read"><strong>ninguna</strong></i></a>
+											@endif
+											</td>
 									
-											<td class="actions">
-											<a href="#" class="on-default edit-row"><i class="fa fa-pencil">Edit </i></a>
-											<a href="#" class="on-default remove-row"><i class="fa fa-trash-o">Deete </i></a>
+											<td>
+											<a href="{{ route('publicacion_edit', ['publicacion_hash'=> $publicacion->hash]) }}" class="btn btn-primary"><i class="fa fa-edit"></i></a>
+											</td>
+											<td>
+											<a href="{{ route('publicacion_delete', ['publicacion_hash'=> $publicacion->hash]) }}" class="btn btn-danger" onclick="return confirm('Está seguro que quiere borrar la publicación?')" ><i class="fa fa-trash"></i></a>
+											<!--<a href="#" class="on-default remove-row"><i class="fa fa-trash-o">Delete </i></a>-->
 											</td>
 											
 										</tr>
