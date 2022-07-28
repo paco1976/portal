@@ -70,7 +70,8 @@
 										<th style="text-align:center">Titulo</th>
 										<th style="text-align:center" colspan="2" >Usuario<br>Activo / Borrar </th>
 										<th style="text-align:center">Mensajes</th>
-										
+										<th style="text-align:center">Visitas</th>
+										<th style="text-align:center">Ultima Visita</th>										
 										<th style="text-align:center" colspan="3">Publicaciones <br> Activado / Ver / Borrar</th>
 										
 									</tr>
@@ -96,6 +97,7 @@
 											<a href="{{ route('admin_user_delete', ['user_hash' => $publicacion->user->hash, 'origen' => 'publicaciones']) }}" onclick="return confirm('Está seguro que quiere borrar el usuario y toda su informacón?')" style="text-align:center" class="btn btn-danger"><i class="fa fa-trash-o"></i></a>
 										</td>
 										
+
 										<td style="text-align:center">
 										@if($publicacion->cant_consultas>0)
 											@if($publicacion->menssage_not_read>0)
@@ -106,6 +108,14 @@
 										@else
 											<a href="" class="btn btn-success">0</a>
 										@endif
+										</td>
+
+										<td style="text-align:center">
+											<a href="" class="btn btn-primary"> {{$publicacion->view}} </a>	
+										</td>
+
+										<td style="text-align:center">
+											<a href="" class="btn btn-primary"> {{$publicacion->updated_at->format('d/m/Y')}} </a>	
 										</td>
 
 										@if($publicacion->aprobado==0)
