@@ -85,7 +85,7 @@
 					<div class="search">
 					<form id="searchForm" action="{{route('publicacion_buscar')}}" method="get">
 							<div class="input-group">
-								<input type="text" name="description" class="form-control search" name="q" id="q" placeholder="Buscar..." required>
+								<input type="text" name="data" class="form-control search" id="q" placeholder="Buscar..." required>
 								<span class="input-group-btn">
 									<button class="btn btn-default" type="submit"><i class="fa fa-search"></i></button>
 								</span>

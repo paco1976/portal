@@ -88,7 +88,7 @@ class PublicController extends Controller
     public function publicacion_buscar(Request $request){
         $publicacion_count = 0;
         //buscador de description de publicaciones
-        $publicaciones_all = Publicacion::Buscador($request->name)->get();
+        $publicaciones_all = Publicacion::Buscador($request->data)->get();
         if($publicaciones_all->count()>0){
         foreach($publicaciones_all as $publicacion){
             $publicacion->users = $publicacion->users()->first();
