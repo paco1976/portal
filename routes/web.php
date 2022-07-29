@@ -106,6 +106,7 @@ Route::get('/admin_categorias','AdminController@admin_categorias' )->name('admin
 Route::get('/admin_categoria_activar_desactivar/{id}','AdminController@admin_categoria_activar_desactivar' )->name('admin_categoria_activar_desactivar');
 Route::put('/admin_categoria_icon','AdminController@admin_categoria_icon' )->name('admin_categoria_icon');
 
+//todas rutas estaticas por el momento
 Route::get('/tarifario',function(){
     $user_type_all = User_type::all();
     $user_cfp_all = User_Cfp::all();
@@ -204,22 +205,9 @@ Route::get('/foro_tema',function(){ return view('foro_tema'); } )->Name('foroT')
 Route::get('/chat',function(){ return view('chat'); } )->name('chat');
 
 /* Rutas publicas */
-
-Route::get('/contacto',function(){
-    $categoria_servicios_all = Categoria::where(['categoria_tipo_id' => 1,'active' => 1])->get();
-    $categoria_productos_all = Categoria::where(['categoria_tipo_id' => 2,'active' => 1])->get();
-    return view('contacto', compact('categoria_servicios_all', 'categoria_productos_all'));
-})->name('contacto');
+Route::get('/contacto',function(){return view('contacto');})->name('contacto');
 Route::put('/contacto', 'PublicController@contact_send')->name('contact_send');
-Route::get('/condiciones',function(){
-    $categoria_servicios_all = Categoria::where(['categoria_tipo_id' => 1,'active' => 1])->get();
-    $categoria_productos_all = Categoria::where(['categoria_tipo_id' => 2,'active' => 1])->get();
-    return view('condiciones', compact('categoria_servicios_all', 'categoria_productos_all'));
-});
-Route::get('/comunidad',function(){
-    $categoria_servicios_all = Categoria::where(['categoria_tipo_id' => 1,'active' => 1])->get();
-    $categoria_productos_all = Categoria::where(['categoria_tipo_id' => 2,'active' => 1])->get();
-    return view('comunidad', compact('categoria_servicios_all', 'categoria_productos_all'));
-});
+Route::get('/condiciones',function(){return view('condiciones');});
+Route::get('/comunidad',function(){return view('comunidad');});
 
 //a partir de acá voy a hacer el panel de referentes
