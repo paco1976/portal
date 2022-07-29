@@ -63,11 +63,11 @@ class Publicacion extends Model
     }
 
     public function whatsapp(){
-        return $this->hasMany('App\Publicacion_Whatsapp');
+        return $this->hasmany('App\Publicacion_Whatsapp', 'publicacion_id');
     }
 
     public function visita(){
-        return $this->hasMany('App\Publicacion_Visita');
+        return $this->hasmany('App\Publicacion_Visita', 'publicacion_id');
     }
 
     public function scopeBuscador($query, $description)

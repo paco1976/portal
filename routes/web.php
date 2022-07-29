@@ -106,6 +106,8 @@ Route::get('/admin_categorias','AdminController@admin_categorias' )->name('admin
 Route::get('/admin_categoria_activar_desactivar/{id}','AdminController@admin_categoria_activar_desactivar' )->name('admin_categoria_activar_desactivar');
 Route::put('/admin_categoria_icon','AdminController@admin_categoria_icon' )->name('admin_categoria_icon');
 
+Route::get('/admin_visitas/{publicacion_hash}', 'AdminController@admin_visitas')->name('admin_visitas');
+
 //todas rutas estaticas por el momento
 Route::get('/tarifario',function(){
     $user_type_all = User_type::all();

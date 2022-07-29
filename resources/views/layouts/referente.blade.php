@@ -119,7 +119,7 @@
 
 										 <li><a href="{{ route('profesionales') }}"><i class="fa fa-calculator"></i> Lista de profesionales</a></li>
 										 <li><a href="{{ route('publicaciones') }}"><i class="fa fa-gift"></i> Lista de publicaciones</a></li>
-										 <li><a href="#"><i class="fa fa-comments"></i> Consultas</a></li>
+										 <!-- <li><a href="#"><i class="fa fa-comments"></i> Consultas</a></li> -->
 									<!-- <li><a href="../panel.html"><i class="fa fa-wrench"></i> Panel</a></li>			-->
 									</ul>
 								</li>
