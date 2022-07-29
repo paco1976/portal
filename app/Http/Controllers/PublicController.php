@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\User_type;
 use App\Publicacion;
+use App\Publicacion_Whatsapp;
+use App\Publicacion_Visita;
 use App\User_Cfp;
 use App\User_Profile;
 use App\User;
@@ -153,6 +155,9 @@ class PublicController extends Controller
         $publicacion = Publicacion::where('id', $id)->first();
         $publicacion->view = $publicacion->view + 1;
         $publicacion->save(['view']);
+        $visita = new Publicacion_Visita;
+        $visita->publicacion_id = $publicacion->id;
+        $visita->save();
         $publicacion->imagenes = $publicacion->imagenes()->get();
         $publicacion->cant_images = 0 ;
         $publicacion->titulos_asociados = $publicacion->titulos_asociados()->get();

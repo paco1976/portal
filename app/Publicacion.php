@@ -62,6 +62,14 @@ class Publicacion extends Model
         return false;
     }
 
+    public function whatsapp(){
+        return $this->hasMany('App\Publicacion_Whatsapp');
+    }
+
+    public function visita(){
+        return $this->hasMany('App\Publicacion_Visita');
+    }
+
     public function scopeBuscador($query, $description)
     {
         return $query->where('description', 'like', "%$description%")->where('aprobado', 1)->where('active', 1);
