@@ -201,8 +201,8 @@ Route::put('/clave', 'UserController@updatepassword')->name('updatepassword');
 
 Route::get('/foto_especifico',function(){ return view('foro_especifico'); } )->name('foroX');
 Route::get('/foro_tema',function(){ return view('foro_tema'); } )->Name('foroT');
-
 Route::get('/chat',function(){ return view('chat'); } )->name('chat');
+
 /* Rutas publicas */
 
 Route::get('/contacto',function(){
@@ -210,10 +210,7 @@ Route::get('/contacto',function(){
     $categoria_productos_all = Categoria::where(['categoria_tipo_id' => 2,'active' => 1])->get();
     return view('contacto', compact('categoria_servicios_all', 'categoria_productos_all'));
 })->name('contacto');
-
 Route::put('/contacto', 'PublicController@contact_send')->name('contact_send');
-
-
 Route::get('/condiciones',function(){
     $categoria_servicios_all = Categoria::where(['categoria_tipo_id' => 1,'active' => 1])->get();
     $categoria_productos_all = Categoria::where(['categoria_tipo_id' => 2,'active' => 1])->get();
