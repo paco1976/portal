@@ -192,6 +192,69 @@ class PublicController extends Controller
 
     }
 
+    public function publicacion_whatsapp($hash){
+
+        $publicacion = Publicacion::where('hash', $hash)->first();
+        $publicacion->view = $publicacion->view + 1;
+        $publicacion->save(['view']);
+        $visita = new Publicacion_Visita;
+        $visita->publicacion_id = $publicacion->id;
+        $visita->save();
+        $publicacion->imagenes = $publicacion->imagenes()->get();
+        $publicacion->cant_images = 0 ;
+        $publicacion->titulos_asociados = $publicacion->titulos_asociados()->get();
+        
+        foreach($publicacion->imagenes as $imagen){
+            $imagen->url = Storage::disk('publicaciones')->url($imagen->url);
+            $publicacion->cant_images = $publicacion->cant_images + 1 ;
+        }
+        
+        $categoria = $publicacion->categoria()->first();
+        $titulo = $publicacion->titulo()->first();
+        $user = $publicacion->users()->first();
+        //dd($user);
+        if($user->avatar == '/img/team/perfil_default.jpg'){
+            
+        }else{
+            $user->avatar = Storage::disk('avatares')->url($user->avatar);
+            
+        }
+        $user_profile = $user->user_profile()->first();
+        $zonas = $user->zonas()->get();
+
+        $user_type_all = User_type::all();
+        $user_cfp_all = User_Cfp::all();
+
+        return view('publicacion_whatsapp', compact('user_type_all','user_cfp_all', 'publicacion','categoria', 'titulo', 'user', 'user_profile', 'zonas'));
+
+    }
+    public function publicacion_whatsapp_save(){
+        
+        $data = request()->validate([
+            'publicacion_hash' => 'required',
+            'celular' => 'required',
+
+        ],[
+            'publicacion_hash.required' => 'Publicacion',
+            'celular.required' =>'Debe escribir su celular',
+        ]);
+
+        $publicacion = Publicacion::where('hash', $data['publicacion_hash'])->first();
+        $user = $publicacion->users()->first();
+        $user_profile = $user->user_profile()->first();
+
+        $whatsapp = new Publicacion_Whatsapp;
+        $whatsapp->publicacion_id = $publicacion->id;
+        $whatsapp->celular = $data['celular'];
+        $whatsapp->save();
+
+        $user_profile = $user->user_profile()->first();
+        $url = "https://wa.me/549". $user_profile->mobile . "?text=Hola!%20Te%20Contacto%20de%20CEFEPERES%20y%20queria%20hacerte%20una%20consulta!";
+        
+        return redirect($url);
+
+    }
+
     public function homeinteraction($hash){
         $interactionhead = Interactionhead::where('hash', $hash)->first();
         $mensajes_all = Interactionmessage::where('head_id', $interactionhead->id)->get();

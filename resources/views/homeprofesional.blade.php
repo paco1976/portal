@@ -4,7 +4,8 @@
 
 @if($user_profile->mobile)
 <!-- <a href="https://api.whatsapp.com/send?phone=549{{ $user_profile->mobile }}&text=Hola!%20Te%20Contacto%20de%20CEFEPERES%20y%20queria%20hacerte%20una%20consulta!" class="whatsapp" target="_blank"> <i class="fa fa-whatsapp whatsapp-icon"></i></a>-->	
-<a href="https://wa.me/549{{ $user_profile->mobile }}?text=Hola!%20Te%20Contacto%20de%20CEFEPERES%20y%20queria%20hacerte%20una%20consulta!" class="whatsapp" target="_blank"> <i class="fa fa-whatsapp whatsapp-icon"></i></a>
+<!--<a href="https://wa.me/549{{ $user_profile->mobile }}?text=Hola!%20Te%20Contacto%20de%20CEFEPERES%20y%20queria%20hacerte%20una%20consulta!" class="whatsapp" target="_blank"> <i class="fa fa-whatsapp whatsapp-icon"></i></a>-->
+<a href="{{ route('publicacion_whatsapp', ['hash'=> $publicacion->hash]) }}" class="whatsapp" > <i class="fa fa-whatsapp whatsapp-icon"></i></a>
 @endif
 			<div role="main" class="main">
 

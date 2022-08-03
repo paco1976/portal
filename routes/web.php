@@ -71,7 +71,9 @@ Route::get('/homeprofesional/{id}','PublicController@publicacion_profesional' )-
 Route::put('/homeprofesional/{id}', 'PublicController@interaction_publicacion')->name('interaction_publicacion');
 Route::get('/homeinteraction/{hash}','PublicController@homeinteraction' )->name('homeinteraction');
 Route::put('/homeinteraction/{hash}', 'PublicController@interaction_publicacion_respuesta')->name('interaction_publicacion_respuesta');
-
+//ruta para el formulario de whatsapp
+Route::get('/publicacion_whatsapp/{hash}','PublicController@publicacion_whatsapp' )->name('publicacion_whatsapp');
+Route::put('/publicacion_whatsapp_save', 'PublicController@publicacion_whatsapp_save')->name('publicacion_whatsapp_save');
 //buscador de publicaciones
 Route::get('/publicacion_buscar','PublicController@publicacion_buscar' )->name('publicacion_buscar');
 
