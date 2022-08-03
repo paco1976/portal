@@ -130,6 +130,7 @@ class AdminController extends Controller
                 $publicacion->categoria = Categoria::where('id', $publicacion->categoria_id)->first();
                 $publicacion->cant_consultas = $publicacion->interactions()->count();
                 $publicacion->cant_visitas = $publicacion->visita()->count();
+                $publicacion->cant_whatsapp = $publicacion->whatsapp()->count();
                 $consultas = Interactionhead::where('publicacion_id',$publicacion->id);
                 $publicacion->menssage_not_read = 0;
                 $publicacion->menssage_total = 0;
@@ -546,6 +547,29 @@ class AdminController extends Controller
             $visitas_all = Publicacion_Visita::where('publicacion_id', $publicacion->id)->orderby('id', 'DESC')->paginate(10);
                         
             return view('admin.visitas', compact('publicacion', 'visitas_all','user'));
+            
+        }
+        else{
+            session::flash('message', 'No está autorizado para esta acción');
+            return redirect('/');
+        }
+    }
+
+    public function admin_whatsapp($publicacion_hash){
+        //dd($publicacion_hash);
+        $user = User::find(Auth::user()->id);
+        $user->avatar = Storage::disk('avatares')->url($user->avatar);
+        $publicacion = Publicacion::where('hash', $publicacion_hash)->first();
+        $publicacion->titulo = Titulo::where('id', $publicacion->titulo_id)->first();
+        $publicacion->categoria = Categoria::where('id', $publicacion->categoria_id)->first();
+        $publicacion->user = $publicacion->user()->first();
+        $publicacion->whatsapp_all = $publicacion->visita()->get();
+        $user->permisos = $user->user_type()->first();
+        if($user->permisos->name == "Administrador" ){
+            //$evento_all = Evento::where('fecha_evento', '<=',$date)->orderby('fecha_evento')->paginate(10);
+            $whatsapp_all = Publicacion_Whatsapp::where('publicacion_id', $publicacion->id)->orderby('id', 'DESC')->paginate(10);
+                        
+            return view('admin.whatsapp', compact('publicacion', 'whatsapp_all','user'));
             
         }
         else{

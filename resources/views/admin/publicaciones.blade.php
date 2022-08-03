@@ -71,6 +71,7 @@
 										<th style="text-align:center" colspan="2" >Usuario<br>Activo / Borrar </th>
 										<th style="text-align:center">Mensajes</th>
 										<th style="text-align:center">Visitas</th>
+										<th style="text-align:center">Whatsapp</th>
 										<th style="text-align:center" colspan="3">Publicaciones <br> Activado / Ver / Borrar</th>
 										
 									</tr>
@@ -115,7 +116,14 @@
 											@else
 												<a href="{{ route('admin_visitas', ['publicacion_hash' => $publicacion->hash]) }}" class="btn btn-primary"> {{$publicacion->cant_visitas}} </a>
 											@endif
-											
+										</td>
+
+										<td style="text-align:center">
+											@if ($publicacion->cant_visitas < 1 )
+												<a href="" class="btn btn-primary"> {{$publicacion->cant_whatsapp}} </a>		
+											@else
+												<a href="{{ route('admin_whatsapp', ['publicacion_hash' => $publicacion->hash]) }}" class="btn btn-primary"> {{$publicacion->cant_whatsapp}} </a>
+											@endif
 										</td>
 
 										@if($publicacion->aprobado==0)
