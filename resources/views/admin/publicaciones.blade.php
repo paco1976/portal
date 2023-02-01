@@ -29,7 +29,7 @@
 				<div class="container">
 
 					<!-- <form id="contactForm" action="#" method="POST">-->
-					<form id="contactForm" >
+					<form id="contactForm" action="{{route('admin_publicaciones')}}" method="get">
 								<div class="row">
 									<div class="form-group">
 										<div class="col-md-12">

@@ -108,13 +108,14 @@ class AdminController extends Controller
 
     }
 
-    public function admin_publicaciones(){
+    public function admin_publicaciones(Request $request){
+
         $user = User::find(Auth::user()->id);
         $user->avatar = Storage::disk('avatares')->url($user->avatar);
         $user->permisos = $user->user_type()->first();
         if($user->permisos->name == "Administrador"){
             //todas las publicaciones del cfp del admin que está conectado
-            $publicaciones = Publicacion::paginate(10);
+            $publicaciones = Publicacion::Buscador($request->name)->paginate(10);
             /*
             $publicaciones = DB::table('publicacion')
             ->join('publicacion_user', 'publicacion.id', '=', 'publicacion_user.publicacion_id')
