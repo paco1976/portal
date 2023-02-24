@@ -41,6 +41,557 @@ class AdminController extends Controller
         $this->middleware('auth');
     }
 
+    public function register_profesional(){
+        $user = User::find(Auth::user()->id);
+        $user->avatar = Storage::disk('avatares')->url($user->avatar);
+        $user_type_all = User_type::where('active', 1)->get();
+        $user_cfp_all = User_Cfp::where('active', 1)->get();
+        return view('/admin.prof_reg', compact('user_type_all', 'user_cfp_all','user'));
+    }
+
+    public function create_profesional()
+    {
+        $data = request()->validate([
+            'name' => ['required', 'string', 'max:255'],
+            'last_name' => ['required', 'string', 'max:255'],
+            'mobile'=> ['required'],
+            'dni' => ['required', 'string', 'max:255'],
+            'avatar' => ['required','image','max:2048'],
+            'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
+            'password' => ['required', 'string', 'min:8', 'confirmed'],
+            'user_type' => ['required'],
+            'user_cfp' => ['required'],
+        ]);
+
+        $user = User::create([
+            'name' => $data['name'],
+            'last_name' => $data['last_name'],
+            'dni' => $data['dni'],
+            'email' => $data['email'],
+            'password' => Hash::make($data['password']),
+            'type_id' => $data['user_type'],
+            'cfp_id' => $data['user_cfp'],
+        ]);
+
+        $user->hash = md5($user->id);
+        $user->save();
+        
+        //creo la carpeta con el numero de id
+        $resultado = Storage::disk('avatares')->makeDirectory($user->id, 0777);
+        //subo el archivo y guardo el path
+        $path = Storage::disk('avatares')->putFILE($user->id, request()->file('avatar'));
+        //actualizo el path del avatar
+        $user->avatar = $path;
+        //guardo el path del avatar
+        $user->save(['avatar']);
+        //dd($user->avatar);
+
+        User_Profile::create([
+            'user_id' => $user->id,
+            'mobile' => $data['mobile'],
+        ]);
+       
+        Session::flash('message', 'El usuario se creó con éxito');
+        $user = User::find(Auth::user()->id);
+        $user->avatar = Storage::disk('avatares')->url($user->avatar);
+        $user_type_all = User_type::where('active', 1)->get();
+        $user_cfp_all = User_Cfp::where('active', 1)->get();
+        return view('/admin.prof_reg', compact('user_type_all', 'user_cfp_all','user'));
+       
+    }
+
+    public function pass_prof($id_prof){
+        $user_type_all = User_type::all();
+        $user_cfp_all = User_Cfp::all();
+        if (Auth::user()) {
+            $user = User::find(Auth::user()->id);
+            $user_prof = User::where("id", $id_prof)->first();
+            $user->avatar = Storage::disk('avatares')->url($user->avatar);
+            $user_profile = User_Profile::where('user_id',$user->id)->first();
+            //$public_path = public_path();
+            //$url = Storage::url($user_profile->photo);
+            //$user_profile->photo=$url;
+            return view('/admin.prof_pass', compact('user', 'user_type_all', 'user_cfp_all', 'user_profile', 'user_prof'));
+        }else {
+            return view('/admin.prof_pass', compact('user_type_all', 'user_cfp_all'));
+        }
+    }
+
+    public function prof_perfil($hash_user){
+        //$user = User::find(Auth::user()->id);
+
+        $user = User::where("hash", $hash_user)->first();
+
+        if($user->avatar == '/img/team/perfil_default.jpg'){
+            //no convierte la url
+        }else{
+            $user->avatar = Storage::disk('avatares')->url($user->avatar);
+        }
+
+        $miszonas = $user->zonas()->get();
+        $user_profile = $user->user_profile()->first();
+        $user_cfp = User_Cfp::where('id',$user->cfp_id)->first();
+        $user->type = $user->user_type()->first();
+        $user->profile = $user->user_profile()->first();
+        $user->cfp = $user->user_cfp()->first();
+        //dd($user);
+               
+        return view('admin.prof_perfil', compact('user','user_profile', 'user_cfp', 'miszonas'));
+        
+    }
+
+    public function updatepass_prof(){
+        $data = request()->validate([
+            'email' => '',
+            'password' => 'required|string|min:8|confirmed',
+        ],[
+            'password.required'=>'La confirmación de clave no es igual',
+        ]);
+        $user = User::where('email', $data['email'])->first();
+        $user->password = Hash::make($data['password']);
+        //dd($user->password );
+        
+        if($user->save(['password']))
+        {
+            Session::flash('message', 'La clave se a cambiado con éxito');
+        }else{
+            Session::flash('error', 'La clave se a cambiado con éxito');
+        }
+        
+        return back();
+    }
+
+    public function avatardelete($hash_user){
+        //$user = User::find(Auth::user()->id);
+        $user = User::where("hash", $hash_user)->first();
+        // storage/
+        //$user->avatar = substr($user->avatar, 8);
+        
+        //dd($user->avatar);
+        //Storage::delete([$user->avatar]);
+        Storage::disk('avatares')->delete($user->avatar);
+       
+        $user->avatar ='/img/team/perfil_default.jpg';
+        $user->save(['avatar']);
+
+        //$user->save(['user_cfp']);
+
+        //$user_profile->save(['mobile', 'phone', 'twitter', 'facebook', 'instagram', 'linkedin']);
+
+        Session::flash('message', 'La imagen se a eliminado con éxito');
+        
+        return back();
+    }
+
+    public function avatarupload($hash_user){
+        //$user = User::find(Auth::user()->id);
+        $user = User::where("hash", $hash_user)->first();
+        //subir archivo
+
+        $carpetas = Storage::disk('avatares')->directories();
+        $directorio_existe = false;
+        foreach($carpetas as $carpeta){
+            if($carpeta == $user->id){   
+                $directorio_existe = true;
+            }
+        }
+        if($directorio_existe == false){
+            //$resultado = Storage::makeDirectory('publicaciones/'. $publicacion->id, 0755, true);
+            $resultado = Storage::disk('avatares')->makeDirectory($user->id, 0777, true);
+        }
+    
+        $path = Storage::disk('avatares')->putFILE($user->id, request()->file('avatar'));
+        
+        
+        $user->avatar = $path;
+        $user->save(['avatar']);
+        //dd($path);
+        Session::flash('message', 'La imagen se a actualizo con éxito');
+        return back();
+    }
+
+    public function prof_publicaciones($hash_user){
+        $user = User::where("hash", $hash_user)->first();
+        //$user = User::find(Auth::user()->id);
+        $user->avatar = Storage::disk('avatares')->url($user->avatar);
+        //$publicacion_all = $user->publicaciones();
+        //dd($publicacion_all);
+        //$publicacion_all = Publicacion::all();
+        $mispublicaciones = $user->publicaciones()->get();
+        //$titulo = $publicacion->titulo()->get('description');
+        foreach($mispublicaciones as $publicacion) {
+            $publicacion->categoria =  $publicacion->categoria()->first();
+            $publicacion->titulo = $publicacion->titulo()->first();
+            $publicacion->cant_consultas = $publicacion->interactions()->count();
+            //dd($publicacion->titulo);
+            
+        }
+       
+        return view('/admin.prof_publicacion', compact('mispublicaciones', 'user'));
+    }
+
+    public function prof_edit($hash_user){
+        
+        $user = User::where("hash", $hash_user)->first();
+
+        if($user->avatar == '/img/team/perfil_default.jpg'){
+            //no convierte la url
+        }else{
+            $user->avatar = Storage::disk('avatares')->url($user->avatar);
+            //disk('avatares')
+        }
+        $user_profile = User_Profile::where('user_id',$user->id)->first();
+        $user_cfp = User_Cfp::where('id',$user->cfp_id)->first();
+        $user_cfp_all = User_Cfp::all();
+
+        //no esta en uso
+        //$user->profiles = User::find(1)->user_profile();
+        //$user->cfp = User::find(1)->user_cfp();
+        $zonas_all = Zonas::all();
+        $miszonas = $user->zonas()->get();
+            //{{ route('publicacion', ['id'=> $user->id]) }}
+        return view('admin.prof_perfil_edit', compact('user', 'user_cfp', 'user_profile', 'user_cfp_all', 'miszonas', 'zonas_all'));
+        
+         //return redirect()->route('perfil');
+    }
+
+    public function prof_update($hash_user){
+        //$user = User::find($id);
+        $user = User::where("hash", $hash_user)->first();
+        
+            $user_profile = User_Profile::where('user_id',$user->id)->first();
+            $data = request()->validate([
+                'mobile'=> 'required',
+                'user_cfp'=>'required',
+                'phono'=> '',
+                'twitter' => '',
+                'facebook' => '',
+                'instagram' => '',
+                'linkedin' => '',
+                'zonas[]'=>'',
+                
+            ],[
+                'mobile.required'=>'El campo celular es obligatorio',
+                'user_cfp.required'=>'El campo cfp es obligatorio',
+            ]);
+
+            $user->cfp_id = $data['user_cfp'];
+
+            $user_profile->user_id=$user->id;
+            $user_profile->mobile= $data['mobile'];
+            $user_profile->phone= $data['phono'];
+            $user_profile->twitter= $data['twitter'];
+            $user_profile->facebook= $data['facebook'];
+            $user_profile->instagram= $data['instagram'];
+            $user_profile->linkedin= $data['linkedin'];
+            $user->save(['user_cfp']);
+
+            $user_profile->save(['mobile', 'phone', 'twitter', 'facebook', 'instagram', 'linkedin']);
+            $zonas_all = Zonas::all();
+            $zonas_new = request('zonas');
+
+            if(is_array($zonas_new)){
+                foreach($zonas_all as $zona) {
+                    $user->zonas()->detach(Zonas::where('name', $zona)->first());
+                }
+                foreach($zonas_new as $zona) {
+                    $user->zonas()->attach(Zonas::where('name', $zona)->first());
+                }
+            }
+                        
+            
+            Session::flash('message', 'El perfil se actualizado con éxito');
+            return back();
+
+        
+    }
+    //tengo que seguir de acá!
+    public function prof_publicacion_edit($publicacion_hash, $hash_user){
+        $publicacion = Publicacion::where('hash', $publicacion_hash)->first();
+        $publicacion->categoria = Categoria::where('id', $publicacion->categoria_id)->first();
+        //$user = User::find(Auth::user()->id);
+        $user = User::where("hash", $hash_user)->first();
+        $publicacion->user = $publicacion->users()->first();
+        $titulos_asociados = Titulo::where('categoria_id', $publicacion->categoria->id)->orderBy('name', 'DESC')->get();
+        $publicacion->imagenes = $publicacion->imagenes()->get();
+        $publicacion->cant_images = 0 ;
+                
+        foreach($publicacion->imagenes as $imagen){
+            $imagen->url = Storage::disk('publicaciones')->url($imagen->url);
+            $publicacion->cant_images = $publicacion->cant_images + 1 ;
+        }
+        
+        //ascendente
+        //$titulo_all = Titulo::all()->sortBy('name');
+        
+        return view('/admin.prof_publicacion_edit', compact('publicacion','user','titulos_asociados'));
+        
+        
+    }
+
+    public function prof_publicacion_update($hash_user){
+        $user = User::where("hash", $hash_user)->first();
+                
+        $data = request()->validate([
+            'publicacion_hash' =>'',
+            'description' => 'required',
+            'titulos[]' => '',
+        ],[
+            'description.required' => 'Debe colocar una descripción sobre su trabajo',
+        ]);
+
+        
+        $publicacion = Publicacion::where('hash', $data['publicacion_hash'])->first();
+        $publicacion->description = $data['description'];
+        $publicacion->save(['description']);
+        $titulos_all = titulo::all();
+
+        
+        
+        if(is_array(request('titulos'))){
+            foreach($titulos_all as $titulo) {
+                $publicacion->titulos_asociados()->detach(titulo::where('name', $titulo->name)->first());
+            }
+            foreach(request('titulos') as $titulo_name) {
+                $publicacion->titulos_asociados()->attach(titulo::where('name', $titulo_name)->first());
+            }
+        }
+
+        //$publicacion->categoria = Categoria::where('id', $publicacion->categoria_id)->first();
+        //$user = User::find(Auth::user()->id);
+        //$publicacion->user = $publicacion->user()->first();
+        
+
+        //***************** SUDIDA DE ARCHIVOS *********** */
+        if(request('file')){
+            
+            //recupero todas las carpetas dentro de la ruta  publicaciones
+            $carpetas = Storage::disk('publicaciones')->directories();
+            //pongo una vandera falsa
+            $directorio_existe = false;
+            //Ahora voy busco entre todas las carpeta si existe la de esta publicación
+            //y pongo la bandera en true para avisar si exite
+            foreach($carpetas as $carpeta){
+                if($carpeta == $publicacion->id){   
+                    $directorio_existe = true;
+                }
+            }
+            
+            // si no se encoentro el directorio id se crea y se sube ahí los achivos
+            if($directorio_existe == false){
+                //$resultado = Storage::makeDirectory('publicaciones/'. $publicacion->id, 0755, true);
+                $resultado = Storage::disk('publicaciones')->makeDirectory($publicacion->id, 0777);
+            }
+            
+            $extensiones=['jpg','png','bmp','svg','jpeg'];
+            
+            //cargo los achivos si es que hay
+            foreach(request('file') as $archivo) {
+                $extension = $archivo->extension();
+                $check = false;
+                //dd($extension);
+
+                foreach($extensiones as $ext){
+                    if($ext == $extension){
+                        $check=true;
+
+                    }
+                }
+
+                //$archivo = $archivo->resize(200, 200);
+                //dd($extension);
+                //$filename = $archivo->getClientOriginalName();
+                //$extension = $archivo->getClientOriginalExtension();
+                //$check=in_array($extension,$allowedfileExtension);
+                //$extension = $archivo->getClientOriginalName();
+                //$path = $archivo->store($archivo,'publicaciones');
+                //$path = Storage::disk('publicaciones)->url($path); esto es para ver la imagen
+                //$path = 'storage/' . $path;
+                //acá guardo los datos de la imagen si es que tiene una extensión permitida
+                if($check==true){
+                    //aca lo sube 
+                    $path = Storage::disk('publicaciones')->putFILE($publicacion->id, $archivo);
+                    $size = Storage::disk('publicaciones')->size($path);
+                    $imagen = new Publicacion_image;
+                    $imagen->publicacion_id=$publicacion->id;
+                    $imagen->extension = $extension;
+                    $imagen->size=$size;
+                    $imagen->url=$path;
+                    $imagen->save();
+                }else{
+                    Session::flash('error', 'Uno de los archivos no es una imagen. La publicación se guardo sin ese archivo');
+                    return back();
+                    //->with('error', 'Uno de los archivos no es una imagen. La publicación se guardo sin ese archivo');
+                }
+                
+            }
+
+        }
+        //***************** FIN SUDIDA DE ARCHIVOS *********** */
+
+        Session::flash('message', 'La publicación se actualizó con éxito');
+
+        $publicacion_all = $user->publicaciones();
+        $mispublicaciones = $user->publicaciones()->get();
+       
+        //return redirect()->route('publicacion');
+        return back();
+    }
+
+
+    public function prof_publicacion_new($hash_user){
+        $user = User::where("hash", $hash_user)->first();
+        $categoria_all = Categoria::all();
+        //ascendente
+        $titulo_all = Titulo::all()->sortBy('name');
+       
+        return view('/prof_publicacion_new', compact('categoria_all', 'user','titulo_all'));
+    }
+
+    public function prof_publicacion_save($hash_user){
+        //esta funcion guarda las publicaciones nuevas
+        
+        //$user = User::find($id);
+        $user = User::where("hash", $hash_user)->first();
+                
+        $data = request()->validate([
+            'titulo_id' => 'required',
+            'description' => 'required',
+        ],[
+            'titulo_id.required' =>'Debe seleccionar un título',
+            'description.required' => 'Debe colocar una descripción sobre su trabajo',
+        ]);
+        
+        
+        //'image' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+        //['image','max:2048']
+        
+        $titulo = titulo::where('id', $data['titulo_id'])->first();
+        
+        //chequeo de publicaciones de la misma categoría
+        //busco las publicaciones del usuario
+        $publicacion_all = $user->publicaciones()->get();
+        //dd($publicacion_all);
+        $repetido = false;
+        foreach($publicacion_all as $publicacion){
+            if($publicacion->categoria_id == $titulo->categoria_id){
+                $repetido = true;
+                $categoria = Categoria::where('id', $publicacion->categoria_id)->first();
+                Session::flash('error', 'No se puede dar de alta la publicación porque ya tenes una publicación en la categoría ' .$categoria->name );
+                //si es repetido me voy de subir archivo y aviso al usuario
+                $publicacion_all = $user->publicaciones();
+                $mispublicaciones = $user->publicaciones()->get();
+                
+                foreach($mispublicaciones as $publicacion) {
+                    $publicacion->categoria =  $publicacion->categoria()->get();
+                    $publicacion->titulo = $publicacion->titulo()->get();
+                    //dd($publicacion->titulo);
+                }
+
+                //return view('/publicacion', compact('publicacion_all', 'user', 'mispublicaciones'));
+                return back();
+                //dd($categoria->name);
+            }
+        }
+        
+        $publicacion = Publicacion::create([
+            'description' => $data['description'],
+            'titulo_id' => $data['titulo_id'],
+            'categoria_id' => $titulo->categoria_id,
+            'view'=> 0,
+            'aprobado'=>0,
+            'activo'=>1,
+        ]);
+        
+        //dd($publicacion);
+               
+        $user->publicaciones()->attach(Publicacion::where('id', $publicacion->id)->first());
+        //subida de archivos si los hay
+
+        $publicacion->hash = md5($publicacion->id);
+        $publicacion->save(['hash']);
+
+        //***************** SUDIDA DE ARCHIVOS *********** */
+        if(request('file')){
+            
+            //recupero todas las carpetas dentro de la ruta  publicaciones
+            $carpetas = Storage::disk('publicaciones')->directories();
+            //pongo una vandera falsa
+            $directorio_existe = false;
+            //Ahora voy busco entre todas las carpeta si existe la de esta publicación
+            //y pongo la bandera en true para avisar si exite
+            foreach($carpetas as $carpeta){
+                if($carpeta == $publicacion->id){   
+                    $directorio_existe = true;
+                }
+            }
+            
+            // si no se encoentro el directorio id se crea y se sube ahí los achivos
+            if($directorio_existe == false){
+                //$resultado = Storage::makeDirectory('publicaciones/'. $publicacion->id, 0755, true);
+                $resultado = Storage::disk('publicaciones')->makeDirectory($publicacion->id, 0777);
+            }
+            
+            $extensiones=['jpg','png','bmp','svg','jpeg'];
+            
+            //cargo los achivos si es que hay
+            foreach(request('file') as $archivo) {
+                $extension = $archivo->extension();
+                $check = false;
+                //dd($extension);
+
+                foreach($extensiones as $ext){
+                    if($ext == $extension){
+                        $check=true;
+
+                    }
+                }
+                //$archivo = $archivo->resize(200, 200);
+                //dd($extension);
+                //$filename = $archivo->getClientOriginalName();
+                //$extension = $archivo->getClientOriginalExtension();
+                //$check=in_array($extension,$allowedfileExtension);
+                //$extension = $archivo->getClientOriginalName();
+                //$path = $archivo->store($archivo,'publicaciones');
+                //$path = Storage::disk('publicaciones)->url($path); esto es para ver la imagen
+                //$path = 'storage/' . $path;
+                //acá guardo los datos de la imagen si es que tiene una extensión permitida
+                if($check==true){
+                    //aca lo sube 
+                    $path = Storage::disk('publicaciones')->putFILE($publicacion->id, $archivo);
+                    $size = Storage::disk('publicaciones')->size($path);
+                    $imagen = new Publicacion_image;
+                    $imagen->publicacion_id=$publicacion->id;
+                    $imagen->extension = $extension;
+                    $imagen->size=$size;
+                    $imagen->url=$path;
+                    $imagen->save();
+                }else{
+                    Session::flash('error', 'Uno de los archivos no es una imagen. La publicación se guardo sin ese archivo');
+                    return back();
+                    //->with('error', 'Uno de los archivos no es una imagen. La publicación se guardo sin ese archivo');
+                }
+                
+            }
+
+        }
+        //***************** FIN SUDIDA DE ARCHIVOS *********** */
+
+        Session::flash('message', 'La publicación se creo con éxito');
+        //$this->mispublicaciones($id);
+        $publicacion_all = $user->publicaciones();
+        $mispublicaciones = $user->publicaciones()->get();
+        
+        foreach($mispublicaciones as $publicacion) {
+            $publicacion->categoria =  $publicacion->categoria()->first();
+            $publicacion->titulo = $publicacion->titulo()->first();
+            $publicacion->cant_consultas = $publicacion->interactions()->count();
+            //dd($publicacion->titulo);
+        }
+        //return view('/publicacion', compact('publicacion_all', 'user', 'mispublicaciones'));
+        return back();
+    }
+
     public function admin_profesionales(Request $request){
         $user = User::find(Auth::user()->id);
         $user->avatar = Storage::disk('avatares')->url($user->avatar);

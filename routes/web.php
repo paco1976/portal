@@ -111,6 +111,26 @@ Route::put('/admin_categoria_icon','AdminController@admin_categoria_icon' )->nam
 Route::get('/admin_visitas/{publicacion_hash}', 'AdminController@admin_visitas')->name('admin_visitas');
 Route::get('/admin_whatsapp/{publicacion_hash}', 'AdminController@admin_whatsapp')->name('admin_whatsapp');
 
+Route::get('/register_profesional', 'AdminController@register_profesional')->name('register_profesional'); //registra  profesional desde el panel de admin
+Route::post('/create_profesional', 'AdminController@create_profesional')->name('create_profesional'); //Crea al nuevo profesional
+
+Route::get('/pass_prof/{id_prof}', 'AdminController@pass_prof' )->name('pass_prof'); //pantalla contraseña panel admin para cambiar al profesional
+Route::put('/pass_prof', 'AdminController@updatepass_prof')->name('updatepass_prof'); //actualiza la clave del profesional
+
+Route::get('/prof_perfil/{hash_user}', 'AdminController@prof_perfil')->name('prof_perfil'); //entrar al perfil de profesional
+
+Route::get('/prof_perfil_edit/{hash_user}', 'AdminController@prof_edit')->name('prof_perfil_edit'); //edita el perfil desde el admin
+Route::put('/prof_perfil_update/{hash_user}', 'AdminController@prof_update')->name('prof_perfil_update'); //guarda el perfil desde el admin
+Route::get('/prof_avatardelete/{hash_user}', 'AdminController@avatardelete')->name('prof_avatardelete'); //elimina avatar de un profesional desde el admin
+Route::put('/prof_avatarupload/{hash_user}', 'AdminController@avatarupload')->name('prof_avatarupload'); //sube avatar de un profesional desde el admin
+
+
+Route::get('/prof_publicacion_edit/{publicacion_hash}/{hash_user}','AdminController@prof_publicacion_edit' )->name('prof_publicacion_edit');
+Route::put('/prof_publicacion_update/{hash_user}', 'AdminController@prof_publicacion_update')->name('prof_publicacion_update'); //guarda la publicación editada
+Route::get('/prof_publicacion/{hash_user}','AdminController@prof_publicaciones' )->name('prof_publicacion'); //ve las problicaciones del profesional desde el admin
+Route::get('/prof_publicacion_new/{hash_user}','AdminController@prof_publicacion_new')->name('prof_publicacion_new');
+Route::put('/prof_publicacion_new/{hash_user}', 'AdminController@prof_publicacion_save')->name('prof_publicacion_save');
+
 //todas rutas estaticas por el momento
 Route::get('/tarifario',function(){
     $user_type_all = User_type::all();
@@ -183,6 +203,8 @@ Route::get('/interacciones',function(){
 
 
 
+
+//pantalla cambio contraseña usuario logueado
 Route::get('/clave',function(){
     $user_type_all = User_type::all();
     $user_cfp_all = User_Cfp::all();
@@ -198,6 +220,7 @@ Route::get('/clave',function(){
         return view('clave', compact('user_type_all', 'user_cfp_all'));
     }
 } )->name('clave');
+
 Route::put('/clave', 'UserController@updatepassword')->name('updatepassword');
 
 /* Rutas provisarias hasta que tenga la base de datos */

@@ -71,7 +71,7 @@
 										<th style="text-align:center">Titulo</th>
 										<th style="text-align:center" colspan="2"> Mensajes <br>totales/no leidos </th>
 										
-										<th style="text-align:center" colspan="3">Publicaciones <br> Activado / ver / Borrar </th>
+										<th style="text-align:center" colspan="4">Publicaciones <br> Activado / Ver / Editar /Borrar </th>
 										
 									</tr>
 								</thead>
@@ -124,6 +124,9 @@
 										@else
 										<a href="#" class="btn btn-warning"><i class="fa fa-eye"></i></a></a>
 										@endif
+										</td>
+										<td>
+										<a href="{{ route('prof_publicacion_edit', ['publicacion_hash'=> $publicacion->hash, 'hash_user'=> $user->hash]) }}" class="btn btn-primary"><i class="fa fa-edit"></i></a>
 										</td>
 										<td style="text-align:center">
 											<a href="{{ route('admin_publicacion_delete', ['publicacion_hash' => $publicacion->hash, 'origen'=>'profesionales' ]) }}" onclick="return confirm('Está seguro que quiere borrar la publicación?')"  class="btn btn-danger"><i class="fa fa-trash-o"></i></a></a>

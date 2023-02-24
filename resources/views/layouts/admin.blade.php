@@ -154,24 +154,24 @@
 										<li>
 											<div class="mega-menu-content">
 												<div class="row">
+													
 													<div class="col-md-8">
+														
 														<div class="user-avatar">
-
+															<!--
 															<div class="img-thumbnail">
-
                                                                 @if (!Auth::user()->avatar)
                                                                     <img src="{{ url('/img/team/perfil_default.jpg') }}" alt="">
                                                                 @else
-
-                                                                    <!--<img src="{{ asset(Auth::user()->avatar) }}"/>-->
 																	<img src="{{ asset($user->avatar) }}"/>
                                                                 @endif
-
-
 															</div>
+															-->
 															<p><strong>{{ Auth::user()->name }}</strong><span>{{ Auth::user()->last_name }}</span></p>
 														</div>
+
 													</div>
+													
 													<div class="col-md-4">
 														<ul class="list-account-options">
 															<li>

@@ -53,7 +53,17 @@
 							</div>
 							@endif
 						</div>
+						<div class="col-sm-6">
+							<div class="mb-md">
+							
+								<a href="{{ route('register_profesional') }}">
+									<button id="addToTable" class="btn btn-primary">Nuevo Profesional </button>
+								</a>
+							</div>
+						</div>
 					</div>
+					
+					<br>
 
 					@if($user_all->count() > 0)
 					<div class="row">
@@ -67,7 +77,8 @@
 										<th style="text-align:center">E-Mail</th>
 										<th style="text-align:center">Celular</th>
 										<th style="text-align:center">CFP</th>
-										<th style="text-align:center" colspan="2">Usuario<br>Activado / Borrar</th>
+										<th style="text-align:center" colspan="3">Usuario<br>Activado / Borrar / Clave</th>
+										<th style="text-align:center">Perfil</th>
 										<th style="text-align:center" colspan="2">Publicaciones <br> Contidad / Mensajes </th>
 									</tr>
 								</thead>
@@ -97,6 +108,14 @@
 
 										<td style="text-align:center">
 											<a href="{{ route('admin_user_delete', ['user_hash' => $usr->hash, 'origen' => 'profesionales']) }}" onclick="return confirm('Está seguro que quiere borrar el usuario y toda su informacón?')" style="text-align:center" class="btn btn-danger"><i class="fa fa-trash-o"></i></a>
+										</td>
+
+										<td style="text-align:center">
+											<a href="{{ route('pass_prof', ['id_prof' => $usr->id]) }}" style="text-align:center" class="btn btn-success"><i class="fa fa-edit"></i></a>
+										</td>
+
+										<td style="text-align:center">
+											<a href="{{ route('prof_perfil', ['hash' => $usr->hash]) }}" style="text-align:center" class="btn btn-success"><i class="fa fa-edit"></i></a>
 										</td>
 										
 										<td style="text-align:center">
