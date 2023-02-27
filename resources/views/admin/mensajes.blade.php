@@ -102,7 +102,8 @@
                         @endforeach
 
 							
-							<a href="{{ route('admin_consultas', ['head_hash'=> $publicacion->hash]) }}" class="btn btn-primary">Volver a consultas</strong></a>
+							<!--<a href="{{ route('admin_consultas', ['head_hash'=> $publicacion->hash]) }}" class="btn btn-primary">Volver a consultas</strong></a>-->
+							<a href="{{ URL::previous() }}" class="btn btn-primary" > VOLVER</a>
                             
 							</div>
 

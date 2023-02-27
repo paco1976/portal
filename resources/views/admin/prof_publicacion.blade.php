@@ -108,7 +108,7 @@
 											</td>
 											<td>
 											@if($publicacion->cant_consultas>0)
-												<a href="{{ route('publicacion_consultas', ['publicacion_hash'=> $publicacion->hash]) }}" class="btn btn-primary"><strong>{{$publicacion->cant_consultas}} - Ver</strong></a>
+												<a href="{{ route('admin_consultas', ['publicacion_hash' => $publicacion->hash]) }}" class="btn btn-primary"><strong>{{$publicacion->cant_consultas}} - Ver</strong></a>
 											@else
 												<a href="#" class="btn btn-primary"><i class="fa fa-read"><strong>ninguna</strong></i></a>
 											@endif

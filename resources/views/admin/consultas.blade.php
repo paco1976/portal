@@ -79,7 +79,8 @@
 									
 								</tbody>
 							</table>
-							<a href="{{ route('admin_publicaciones_user', ['user_hash' => $publicacion->user->hash]) }}" class="btn btn-primary" > Volver a PUBLICACIONES</a>
+							<!--<a href="{{ route('admin_publicaciones_user', ['user_hash' => $publicacion->user->hash]) }}" class="btn btn-primary" > Volver a PUBLICACIONES</a>-->
+							<a href="{{ URL::previous() }}" class="btn btn-primary" > VOLVER</a>
 						</div>
 
 					</div>
