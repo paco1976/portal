@@ -64,7 +64,7 @@
 								
 									<tr align="center">
 										<th style="text-align:center" onclick="sortTable(0, 'str')" ><a class="link" href="#">Nombre y Apellido</a></th>
-										<th style="text-align:center">Mail</th>
+										<!--<th style="text-align:center">Mail</th>-->
 										<th style="text-align:center">CFP</th>
 										<th style="text-align:center">Categoría</th>
 										<th style="text-align:center">Titulo</th>
@@ -72,7 +72,7 @@
 										<th style="text-align:center">Mensajes</th>
 										<th style="text-align:center">Visitas</th>
 										<th style="text-align:center">Whatsapp</th>
-										<th style="text-align:center" colspan="3">Publicaciones <br> Activado / Ver / Borrar</th>
+										<th style="text-align:center" colspan="4">Publicaciones <br> Activado / Editar / Ver / Borrar</th>
 										
 									</tr>
 								</thead>
@@ -80,7 +80,7 @@
 								@foreach($publicaciones as $publicacion)
 									<tr class="gradeX">
 										<td>{{$publicacion->user->name}} {{$publicacion->user->last_name}}</td>
-										<td>{{$publicacion->user->email}}</td>
+										<!-- <td>{{$publicacion->user->email}}</td> -->
 										<td>{{$publicacion->cfp->name}}</td>
 										<td>{{$publicacion->categoria->name}}</td>
 										<td>{{$publicacion->titulo->name}}</td>
@@ -135,6 +135,10 @@
 											<a href="{{ route('admin_publicaciones_aprobar_desaprobar', ['publicacion_hash' => $publicacion->hash, 'origen' => 'publicaciones']) }}" class="btn btn-success">SI</a>
 										</td>
 										@endif
+
+										<td style="text-align:center">
+											<a href="{{ route('prof_publicacion_edit', ['publicacion_hash'=> $publicacion->hash, 'hash_user'=>$user->hash]) }}" class="btn btn-primary"><i class="fa fa-edit"></i></a>
+										</td>
 
 										<td style="text-align:center">
 											<a href="{{ route('admin_publicacion_user', ['publicacion_hash' => $publicacion->hash, 'origen'=>'publicaciones' ]) }}" class="btn btn-primary"><i class="fa fa-eye"></i></a></a>
