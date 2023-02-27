@@ -74,4 +74,9 @@ class Publicacion extends Model
     {
         return $query->where('description', 'like', "%$description%")->where('aprobado', 1)->where('active', 1);
     }
+
+    public function scopeBuscador_admin($query, $description)
+    {
+        return $query->where('description', 'like', "%$description%")->where('active', 1);
+    }
 }

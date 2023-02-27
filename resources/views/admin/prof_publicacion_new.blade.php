@@ -33,10 +33,10 @@
 							<div class="tabs">
 								<ul class="nav nav-tabs">
 									<li>
-										<a href="{{ Url('/perfil') }}" ><i class="fa fa-user"></i> Perfil</a>
+										<a href="{{ route('prof_perfil', ['user_hash' => $user->hash]) }} " ><i class="fa fa-user"></i> Perfil</a>
 									</li>
 									<li class="active">
-										<a href="{{ route('publicacion') }}"><i class="fa fa-file-powerpoint-o"></i> Publicaciones</a>
+										<a href="{{ route('prof_publicacion', ['user_hash' => $user->hash])  }}"><i class="fa fa-file-powerpoint-o"></i> Publicaciones</a>
 									</li>
 									<li>
 
@@ -69,7 +69,7 @@
 										</div>
 									</div>	
 							<div class="panel-body">
-									<form class="form-horizontal form-bordered" action="{{ route('publicacion_save') }}" method="POST" enctype="multipart/form-data" >
+									<form class="form-horizontal form-bordered" action="{{ route('prof_publicacion_save', ['hash_user' => $user->hash]) }}" method="POST" enctype="multipart/form-data" >
                         			{{ method_field('PUT') }}
 									@csrf
 										<div class="form-group">

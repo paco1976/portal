@@ -128,8 +128,10 @@ Route::put('/prof_avatarupload/{hash_user}', 'AdminController@avatarupload')->na
 Route::get('/prof_publicacion_edit/{publicacion_hash}/{hash_user}','AdminController@prof_publicacion_edit' )->name('prof_publicacion_edit');
 Route::put('/prof_publicacion_update/{hash_user}', 'AdminController@prof_publicacion_update')->name('prof_publicacion_update'); //guarda la publicación editada
 Route::get('/prof_publicacion/{hash_user}','AdminController@prof_publicaciones' )->name('prof_publicacion'); //ve las problicaciones del profesional desde el admin
-Route::get('/prof_publicacion_new/{hash_user}','AdminController@prof_publicacion_new')->name('prof_publicacion_new');
-Route::put('/prof_publicacion_new/{hash_user}', 'AdminController@prof_publicacion_save')->name('prof_publicacion_save');
+Route::get('/prof_publicacion_new/{hash_user}','AdminController@prof_publicacion_new')->name('prof_publicacion_new'); //alta de publicación desde el admin
+Route::put('/prof_publicacion_new/{hash_user}', 'AdminController@prof_publicacion_save')->name('prof_publicacion_save'); //guardar de publicación desde el admin
+
+
 
 //todas rutas estaticas por el momento
 Route::get('/tarifario',function(){

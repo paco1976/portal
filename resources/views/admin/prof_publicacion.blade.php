@@ -65,7 +65,7 @@
 								<div class="col-sm-6">
 									<div class="mb-md">
 									
-										<a href="{{ route('publicacion_new') }}">
+										<a href="{{ route('prof_publicacion_new', ['user_hash' => $user->hash] ) }}">
 										    <button id="addToTable" class="btn btn-primary">Agregar Publicación </button>
                                         </a>
                                     </div>

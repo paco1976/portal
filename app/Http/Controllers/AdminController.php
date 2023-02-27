@@ -445,7 +445,7 @@ class AdminController extends Controller
         //ascendente
         $titulo_all = Titulo::all()->sortBy('name');
        
-        return view('/prof_publicacion_new', compact('categoria_all', 'user','titulo_all'));
+        return view('/admin.prof_publicacion_new', compact('categoria_all', 'user','titulo_all'));
     }
 
     public function prof_publicacion_save($hash_user){
@@ -469,9 +469,8 @@ class AdminController extends Controller
         $titulo = titulo::where('id', $data['titulo_id'])->first();
         
         //chequeo de publicaciones de la misma categoría
-        //busco las publicaciones del usuario
         $publicacion_all = $user->publicaciones()->get();
-        //dd($publicacion_all);
+        
         $repetido = false;
         foreach($publicacion_all as $publicacion){
             if($publicacion->categoria_id == $titulo->categoria_id){
@@ -489,6 +488,7 @@ class AdminController extends Controller
                 }
 
                 //return view('/publicacion', compact('publicacion_all', 'user', 'mispublicaciones'));
+                Session::flash('error', 'Usted ya posee una publicación en esta categoría');
                 return back();
                 //dd($categoria->name);
             }
@@ -666,7 +666,8 @@ class AdminController extends Controller
         $user->permisos = $user->user_type()->first();
         if($user->permisos->name == "Administrador"){
             //todas las publicaciones del cfp del admin que está conectado
-            $publicaciones = Publicacion::Buscador($request->name)->paginate(10);
+            $publicaciones = Publicacion::Buscador_admin($request->name)->paginate(10);
+            //$publicaciones = Publicacion::where('active', 1)->paginate(10);
             /*
             $publicaciones = DB::table('publicacion')
             ->join('publicacion_user', 'publicacion.id', '=', 'publicacion_user.publicacion_id')
@@ -676,6 +677,7 @@ class AdminController extends Controller
             */
             //dd($publicaciones);
             foreach($publicaciones as $publicacion){
+                //dd($publicacion->aprobado);
                 $publicacion->user = $publicacion->users()->first();
                 $publicacion->cfp = $publicacion->user->cfp()->first();
                 $publicacion->titulo = Titulo::where('id', $publicacion->titulo_id)->first();

@@ -126,13 +126,13 @@
 											@endif
 										</td>
 
-										@if($publicacion->aprobado==0)
+										@if($publicacion->aprobado)
 										<td style="text-align:center">
-											<a href="{{ route('admin_publicaciones_aprobar_desaprobar', ['publicacion_hash' => $publicacion->hash, 'origen' => 'publicaciones']) }}" class="btn btn-danger"> NO </a>
+											<a href="{{ route('admin_publicaciones_aprobar_desaprobar', ['publicacion_hash' => $publicacion->hash, 'origen' => 'publicaciones']) }}" class="btn btn-success">SI</a>
 										</td>
 										@else
 										<td style="text-align:center">
-											<a href="{{ route('admin_publicaciones_aprobar_desaprobar', ['publicacion_hash' => $publicacion->hash, 'origen' => 'publicaciones']) }}" class="btn btn-success">SI</a>
+											<a href="{{ route('admin_publicaciones_aprobar_desaprobar', ['publicacion_hash' => $publicacion->hash, 'origen' => 'publicaciones']) }}" class="btn btn-danger"> NO </a>
 										</td>
 										@endif
 
