@@ -403,8 +403,8 @@ class PublicController extends Controller
         //Referente - el referente tiene una url diferente
         $interactionhead->url = url('mensajes/' . $interactionhead->hash);
 
-        Mail::to($cfp->email)->send(new Interaction_notificacion_referente($interactionhead));
-
+        //Mail::to($cfp->email)->send(new Interaction_notificacion_referente($interactionhead));
+        Mail::to('portaldeservicioscfp@gmail.com')->send(new Interaction_notificacion_referente($interactionhead));
         Session::flash('message', 'El mensaje se envió con éxito');
         
         return redirect()->route('homeprofesional', ['id' => $id]);
@@ -515,7 +515,8 @@ class PublicController extends Controller
         $cfp = $profesional->user_cfp()->first();
         //Referente - el referente tiene una url diferente
         $interactionhead->url = url('mensajes/' . $interactionhead->hash);
-        Mail::to($cfp->email)->send(new Interaction_notificacion_referente($interactionhead));
+        //Mail::to($cfp->email)->send(new Interaction_notificacion_referente($interactionhead));
+        Mail::to('portaldeservicioscfp@gmail.com')->send(new Interaction_notificacion_referente($interactionhead));
 
         return redirect()->route('homeinteraction', ['hash' => $interactionhead->hash ]);
     }
